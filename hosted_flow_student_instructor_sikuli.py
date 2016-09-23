@@ -22,9 +22,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from datetime import datetime
-from proctortrack_app.launchapp import launchapp
+#from proctortrack_app.launchapp import launchapp
 from selenium.webdriver.common.action_chains import ActionChains
-from proctortrack_app.launchapp import launchapp
+#from proctortrack_app.launchapp import launchapp
 from selenium.webdriver.support.ui import Select
 from optparse import OptionParser
 
@@ -924,7 +924,7 @@ class HostedFlowTestWithPayment(object):
             time.sleep(20)
             driver.execute_script("window.scrollTo(0, 400);")
             print "Downloading the app...."
-            launchapp('dev')
+            #launchapp('dev')
             time.sleep(90)
             status = True
         except NoSuchElementException as e:
