@@ -17,7 +17,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from datetime import datetime
 from selenium.webdriver.common.action_chains import ActionChains
-from proctortrack_app.launchapp import launchapp
+# from proctortrack_app.launchapp import launchapp
 from selenium.webdriver.support.ui import Select
 from optparse import OptionParser
 
