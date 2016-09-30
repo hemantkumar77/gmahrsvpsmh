@@ -941,9 +941,11 @@ class HostedFlowTestWithPayment(object):
         step = "Student Flow: Downloading APP"
         username = getpass.getuser()
         os_name = platform.system()
+        print "The User name is ... " + username
         if "Windows" in os_name:
             print "Into Windows loop"
-            download_path = "C:\\Users\\" + username + "\\Downloads\\"
+            #download_path = "C:\\Users\\" + username + "\\Downloads\\"
+            download_path = "C:\\Users\\Verificient_Windows\\Downloads\\"            
             print download_path
             app_name = "Proctortrack_2.0.66_0701.exe"
             path_to_app = download_path + app_name
