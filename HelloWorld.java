@@ -2,6 +2,6 @@ public class HelloWorld {
 
     public static void main(String[] args) {
         // Prints "Hello, World" to the terminal window.
-        System.out.println("Hello Gitt! Its Jenkins here");
+        System.out.println("Hello Gittt! Its Jenkins here");
     }
 }
