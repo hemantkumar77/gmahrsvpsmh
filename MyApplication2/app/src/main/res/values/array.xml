@@ -1,0 +1,37 @@
+<resources>
+    <string-array name="pll">
+        <item>Malavli</item>
+        <item>Kamshet</item>
+        <item>Kanhe</item>
+        <item>Wadgaon</item>
+        <item>Talegaon</item>
+        <item>Ghorawadi</item>
+        <item>Begdewadi</item>
+        <item>Dehuroad</item>
+        <item>Akurdi</item>
+        <item>Chinchwad</item>
+        <item>Pimpri</item>
+        <item>Kasarwadi</item>
+        <item>Dapodi</item>
+        <item>Khadki</item>
+        <item>S. Nagar</item>
+    </string-array>
+    <string-array name="lpl">
+        <item>S. Nagar</item>
+        <item>Khadki</item>
+        <item>Dapodi</item>
+        <item>Kasarwadi</item>
+        <item>Pimpri</item>
+        <item>Chinchwad</item>
+        <item>Akurdi</item>
+        <item>Dehuroad</item>
+        <item>Begdewadi</item>
+        <item>Ghorawadi</item>
+        <item>Talegaon</item>
+        <item>Wadgaon</item>
+        <item>Kanhe</item>
+        <item>Kamshet</item>
+        <item>Malavli</item>
+    </string-array>
+
+</resources>
