@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android= "http://schemas.android.com/apk/res/android" android:id="@+id/widget31" android:layout_width="fill_parent" android:layout_height="fill_parent" >
+    <TableRow android:id="@+id/row" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:orientation="horizontal" >
+        <Spinner
+            android:id="@+id/spn_train_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/detail1"
+            android:layout_marginEnd="22dp"
+            android:entries="@array/station_name"
+            android:layout_marginTop="52dp" />
+    </TableRow>
+    <TableRow android:id="@+id/row2" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_below="@+id/row" android:orientation="horizontal" >
+        <Spinner
+            android:id="@+id/spn_station_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/detail1"
+            android:layout_marginEnd="22dp"
+            android:entries="@array/station_name"
+            android:layout_marginTop="52dp" />
+    </TableRow>
+    <TableRow android:id="@+id/row3" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_below="@+id/row2" android:orientation="horizontal" >
+        <EditText android:id="@+id/etNewArrivalTime" android:hint="Arrival time"  android:layout_width="0dp" android:layout_weight="0.3"  android:layout_height="wrap_content" android:textSize="18sp" >
+        </EditText>
+        <EditText android:id="@+id/etNewDepartureTime" android:hint="Departure Time"  android:layout_width="0dp" android:layout_weight="0.3"  android:layout_height="wrap_content" android:textSize="18sp" >
+        </EditText>
+        <Button android:id="@+id/btNewTrainStation" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/add_button_name" >
+        </Button>
+    </TableRow>
+    <Button android:id="@+id/detail1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_summary"
+        android:onClick="onClick"
+        android:layout_alignParentRight="true"
+        android:text="Detail"/>
+    <Button android:id="@+id/detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_summary"
+        android:onClick="onClick"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/detail1"
+        android:text="Detail"/>
+    <ListView android:id="@+id/lvTrainStation" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_alignParentTop="false"  android:layout_below="@+id/row3">
+    </ListView>
+</RelativeLayout>

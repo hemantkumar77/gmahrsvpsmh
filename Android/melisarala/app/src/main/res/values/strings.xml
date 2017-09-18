@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">"MelisSarala"</string>
+    <string name="add_button_name">"Add"</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="action_checklist">Check List</string>
+    <string-array name="station_name">
+        <item>-- Select Station --</item>
+        <item>MALWALI</item>
+        <item>KAMSHET</item>
+        <item>KANHE</item>
+        <item>WADGAON</item>
+        <item>TALEGAON</item>
+        <item>GHORWADI</item>
+        <item>BEGDEWADI</item>
+        <item>DEHUROAD</item>
+        <item>AKURDI</item>
+        <item>CHINCHWAD</item>
+        <item>PIMPRI</item>
+        <item>KASARWADI</item>
+        <item>DAPODI</item>
+        <item>KHADKI</item>
+        <item>SHIVAJINAGAR</item>
+    </string-array>
+</resources>

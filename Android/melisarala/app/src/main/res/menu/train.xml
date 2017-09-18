@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_select_station"
+        android:orderInCategory="100"
+        android:title="Select Station"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_add_train"
+        android:orderInCategory="100"
+        android:title="Add Train"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_add_station"
+        android:orderInCategory="100"
+        android:title="Add Station"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_add_train_station"
+        android:orderInCategory="100"
+        android:title="Add Train Station"
+        app:showAsAction="never" />
+</menu>

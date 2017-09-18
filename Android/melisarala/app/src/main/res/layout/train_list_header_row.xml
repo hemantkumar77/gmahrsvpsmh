@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:clickable="true"
+    android:background="?android:attr/selectableItemBackground"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/upStart"
+        android:text="AAA"
+        android:layout_alignParentTop="true"
+        android:layout_width="150dp"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorUp"
+        android:layout_height="20dp"/>
+
+    <TextView
+        android:id="@+id/downStart"
+        android:text="DDD"
+        android:layout_width="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorDown"
+        android:layout_height="20dp"/>
+
+    <TextView
+        android:id="@+id/upMiddle"
+        android:text="BBB"
+        android:layout_width="150dp"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/upStart"
+        android:textAlignment="center"
+        android:textColor="@color/colorUp"
+        android:layout_height="25dp"/>
+    <TextView
+        android:id="@+id/downMiddle"
+        android:text="EEE"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_width="150dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/downStart"
+        android:textAlignment="center"
+        android:textColor="@color/colorDown"
+        android:layout_height="25dp"/>
+
+    <TextView
+        android:id="@+id/upDestination"
+        android:text="CCC"
+        android:layout_width="150dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/upMiddle"
+        android:textAlignment="textEnd"
+        android:textColor="@color/colorUp"
+        android:layout_height="20dp"/>
+    <TextView
+        android:id="@+id/downDestination"
+        android:text="FFF"
+        android:layout_width="150dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/downMiddle"
+        android:textAlignment="textEnd"
+        android:textColor="@color/colorDown"
+        android:layout_height="20dp"/>
+</RelativeLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/widget31"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.kumar.hemant.melisarala.Train.MVCView"
+    tools:showIn="@layout/app_bar_mvc_view">
+
+    <TableRow android:id="@+id/row" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:orientation="horizontal" >
+        <EditText android:id="@+id/etNewTask" android:hint="Train No." android:layout_width="0dp" android:layout_weight="0.3" android:layout_height="wrap_content" android:textSize="18sp" >
+        </EditText>
+        <EditText android:id="@+id/etNewTask2" android:hint="Train Name" android:layout_width="0dp" android:layout_weight="0.7" android:layout_height="wrap_content" android:textSize="18sp" >
+        </EditText>
+    </TableRow>
+    <TableRow android:id="@+id/row2" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_below="@+id/row" android:orientation="horizontal" >
+        <EditText android:id="@+id/etNewTask3" android:hint="Source"  android:layout_width="0dp" android:layout_weight="0.5" android:layout_height="wrap_content" android:textSize="18sp" >
+        </EditText>
+        <EditText android:id="@+id/etNewTask4" android:hint="Destination"  android:layout_width="0dp" android:layout_weight="0.5"  android:layout_height="wrap_content"  android:textSize="18sp" >
+        </EditText>
+    </TableRow>
+    <TableRow android:id="@+id/row3" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_below="@+id/row2" android:orientation="horizontal" >
+        <EditText android:id="@+id/etNewTask5" android:hint="Days of Week"  android:layout_width="0dp" android:layout_weight="0.5"  android:layout_height="wrap_content" android:textSize="18sp" >
+        </EditText>
+        <Button android:id="@+id/btNewTask" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/add_button_name" >
+        </Button>
+    </TableRow>
+    <ListView android:id="@+id/lvTask" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_alignParentTop="false"  android:layout_below="@+id/row3">
+    </ListView>
+</RelativeLayout>
