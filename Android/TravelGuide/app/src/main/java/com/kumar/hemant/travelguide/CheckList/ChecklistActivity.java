@@ -29,6 +29,7 @@ import com.kumar.hemant.travelguide.Action;
 import com.kumar.hemant.travelguide.ActionsDataSource;
 import com.kumar.hemant.travelguide.DatePickerFragment;
 import com.kumar.hemant.travelguide.R;
+import com.kumar.hemant.travelguide.RTO.RTOActivity;
 /*import com.kumar.hemant.travelguide.RTO.RTOActivity;
 import com.kumar.hemant.travelguide.Train.MVCView;
 import com.kumar.hemant.travelguide.Train.SearchStationActivity;
@@ -325,7 +326,7 @@ public class ChecklistActivity extends AppCompatActivity implements NavigationVi
             startActivity(i);
 
         } else if (id == R.id.nav_slideshow) {
-            Intent i = new Intent(ChecklistActivity.this, ChecklistActivity.class);
+            Intent i = new Intent(ChecklistActivity.this, RTOActivity.class);
             startActivity(i);
 
         } else if (id == R.id.nav_manage) {
