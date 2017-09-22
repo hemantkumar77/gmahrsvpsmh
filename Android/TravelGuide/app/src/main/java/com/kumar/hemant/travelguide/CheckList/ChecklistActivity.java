@@ -30,6 +30,7 @@ import com.kumar.hemant.travelguide.ActionsDataSource;
 import com.kumar.hemant.travelguide.DatePickerFragment;
 import com.kumar.hemant.travelguide.R;
 import com.kumar.hemant.travelguide.RTO.RTOActivity;
+import com.kumar.hemant.travelguide.Train.TrainActivity;
 /*import com.kumar.hemant.travelguide.RTO.RTOActivity;
 import com.kumar.hemant.travelguide.Train.MVCView;
 import com.kumar.hemant.travelguide.Train.SearchStationActivity;
@@ -319,7 +320,7 @@ public class ChecklistActivity extends AppCompatActivity implements NavigationVi
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Intent i = new Intent(ChecklistActivity.this, ChecklistActivity.class);
+            Intent i = new Intent(ChecklistActivity.this, TrainActivity.class);
             startActivity(i);
         } else if (id == R.id.nav_gallery) {
             Intent i = new Intent(ChecklistActivity.this, ChecklistActivity.class);
