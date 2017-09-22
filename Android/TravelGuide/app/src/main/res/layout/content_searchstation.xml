@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff" >
+
+
+    <Spinner
+        android:id="@+id/spn_station"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/detail1"
+        android:layout_marginEnd="22dp"
+        android:entries="@array/station_name"
+        android:layout_marginTop="52dp" />
+    <Button android:id="@+id/detail1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_summary"
+        android:onClick="onClick"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/rtoState"
+        android:text="Detail"/>
+    <Button android:id="@+id/detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_summary"
+        android:onClick="onClick"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/spn_station"
+        android:text="Detail"/>
+</RelativeLayout>
