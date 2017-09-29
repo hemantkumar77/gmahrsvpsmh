@@ -88,13 +88,7 @@ public class AddTrainStation extends Activity implements NavigationView.OnNaviga
         public void onClick(final View view)
         {
             Log.d(APP_TAG, "New Station button added");
-/*
-            if(AddTrainStation.this.spnNewStationCode.getSelectedItem().toString().length()==3)
-                if(AddTrainStation.this.spnNewTrainNo.getSelectedItem().toString().length()==5)
-                    if(AddTrainStation.this.etNewArrivalTime.getText().toString().length()==4)
-                        if(AddTrainStation.this.etNewDepartureTime.getText().toString().length()==4)
-*/
-                            AddTrainStation.this.controller.addTrainStation(AddTrainStation.this.spnNewTrainNo.getSelectedItem().toString().substring(0,5), AddTrainStation.this.spnNewStationCode.getSelectedItem().toString().substring(0,3),  AddTrainStation.this.etNewArrivalTime.getText().toString(),  AddTrainStation.this.etNewDepartureTime.getText().toString());
+            AddTrainStation.this.controller.addTrainStation(AddTrainStation.this.spnNewTrainNo.getSelectedItem().toString().substring(0,5), AddTrainStation.this.spnNewStationCode.getSelectedItem().toString().substring(0,3),  AddTrainStation.this.etNewArrivalTime.getText().toString(),  AddTrainStation.this.etNewDepartureTime.getText().toString());
             AddTrainStation.this.populateTrainStations();
         }
     };

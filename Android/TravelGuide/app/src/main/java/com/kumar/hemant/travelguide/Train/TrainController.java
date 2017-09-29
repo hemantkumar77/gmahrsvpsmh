@@ -58,7 +58,7 @@ public class TrainController
     }
     public void deleteTrainStation(final String train_code) {
         Log.v("DDDDDDDDATE","...146: "+ train_code.substring(0,3));
-        model.deleteTrainStation("train_code='" + train_code.substring(0,5) + "'");
+        model.deleteTrainStation(train_code);
     }
 /*
     public void deleteTask(final long id) { model.deleteTask("id='" + id + "'");
@@ -106,7 +106,7 @@ public class TrainController
             while (c.isAfterLast() == false)
             {
                 trainstations.add(c.getString(0)+"-"+c.getString(1)+"-"+c.getString(2)+"-"+c.getString(3));
-                Log.v("DDDDDDDDATE","...144: "+c.getString(0));
+                Log.v("DDDDDDDDATE","...156Hem: "+c.getString(0));
                 c.moveToNext();
             }
             c.close();

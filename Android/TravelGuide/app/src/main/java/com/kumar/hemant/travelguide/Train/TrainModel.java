@@ -58,17 +58,12 @@ final class TrainModel
     public Cursor loadAllTrains()
     {
         Log.d(TrainView.APP_TAG, "loadAllTasks()");
-        final Cursor c = this.database.query(TrainModel.TABLE_NAME, new String[] { "train_no" , "train_name" , "source" , "destination" , "days_of_week"}, null, null, null, null, null); return c;
+        final Cursor c = this.database.query(TrainModel.TABLE_NAME, new String[] { "train_no" , "train_name" , "source" , "destination" , "days_of_week"}, null, null, null, null, "train_no", null);
+        return c;
     }
     public Cursor loadAllTrainTime()
     {
         Log.d(TrainView.APP_TAG, "loadAllTasks()");
-        /*SELECT ts.[trainno], s.stationname, ts.timearrival
-        FROM tblTrainStation AS ts, tblStation AS s
-        WHERE ts.stationcode=s.stationcode
-        ORDER BY trainno, timearrival;*/
-
-//        final Cursor c = this.database.rawQuery("select t.train_no, t.train_name, t.source, t.destination, s.station_code, s.station_name from tblTrain t, tblStation s, tblTrainStation ts where t.source='pun' and ts.train_no=t.train_no and ts.station_code=s.station_code order by t.train_no",null);
         final Cursor c = this.database.rawQuery("select ts.train_no, s.station_name, ts.time_arrival, ts.train_no, s.station_name, ts.time_arrival  from tblTrainStation ts, tblStation s where ts.station_code=s.station_code order by train_no, time_arrival;",null);
         String dbPath1 = this.database.getPath();
         Log.v("DDDDDDDDATE","...144: "+dbPath1);
@@ -93,13 +88,17 @@ final class TrainModel
     }
     public void deleteTrainStation(final String field_params)
     {
-        this.database.delete(TrainModel.TABLE_NAME3, field_params, null);
-        Log.v("DDDDDDDDATE","...144: "+str1);
+        //this.database.delete(TrainModel.TABLE_NAME3, field_params, null);
+        String a= field_params.substring(0,5);
+        String b = field_params.substring(6,9);
+        String c = "delete from tblTrainStation where train_no='"+a+"' and station_code='"+b+"'";
+        this.database.rawQuery(c ,null).moveToFirst();
+        Log.v("DDDDDDDDATE","...155: "+a+"...."+c);
     }
     public Cursor loadAllTrainStations()
     {
         Log.d(TrainView.APP_TAG, "loadAllTrainStations()");
-        final Cursor c1 = this.database.query(TrainModel.TABLE_NAME3, new String[] { "train_no" , "station_code", "time_arrival", "time_departure"}, null, null, null, null, null);
+        final Cursor c1 = this.database.query(TrainModel.TABLE_NAME3, new String[] { "train_no" , "station_code", "time_arrival", "time_departure"}, null, null, null, null, "train_no",null);
         return c1;
     }
 }
