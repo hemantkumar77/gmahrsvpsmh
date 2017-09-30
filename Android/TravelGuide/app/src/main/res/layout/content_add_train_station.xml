@@ -23,28 +23,13 @@
             android:layout_marginTop="52dp" />
     </TableRow>
     <TableRow android:id="@+id/row3" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_below="@+id/row2" android:orientation="horizontal" >
-        <EditText android:id="@+id/etNewArrivalTime" android:hint="Arrival time"  android:layout_width="0dp" android:layout_weight="0.3"  android:layout_height="wrap_content" android:textSize="18sp" >
+        <EditText android:id="@+id/etNewArrivalTime" android:hint="Arrival time"  android:layout_width="0dp" android:layout_weight="0.3"  android:layout_height="wrap_content" android:textSize="18sp" android:inputType="number" >
         </EditText>
-        <EditText android:id="@+id/etNewDepartureTime" android:hint="Departure Time"  android:layout_width="0dp" android:layout_weight="0.3"  android:layout_height="wrap_content" android:textSize="18sp" >
+        <EditText android:id="@+id/etNewDepartureTime" android:hint="Departure Time"  android:layout_width="0dp" android:layout_weight="0.3"  android:layout_height="wrap_content" android:textSize="18sp" android:inputType="number">
         </EditText>
         <Button android:id="@+id/btNewTrainStation" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/add_button_name" >
         </Button>
     </TableRow>
-    <Button android:id="@+id/detail1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_summary"
-        android:onClick="onClick"
-        android:layout_alignParentRight="true"
-        android:text="Detail"/>
-    <Button android:id="@+id/detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_summary"
-        android:onClick="onClick"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/detail1"
-        android:text="Detail"/>
     <ListView android:id="@+id/lvTrainStation" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_alignParentTop="false"  android:layout_below="@+id/row3">
     </ListView>
 </RelativeLayout>
