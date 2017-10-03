@@ -149,7 +149,7 @@ public class TrainController
         if (c != null) { c.moveToFirst();
             while (c.isAfterLast() == false)
             {
-                traintimes.add(c.getString(0)+"-"+c.getString(1)+"-"+c.getString(2)+"-"+c.getString(3)+"-"+c.getString(4)+"-"+c.getString(5));
+                traintimes.add(c.getString(0)+"-"+c.getString(1)+"-"+c.getString(2)+"-"+c.getString(3)+"-"+c.getString(4)+"-"+c.getString(5)+"-"+c.getString(6)+"-"+c.getString(7)+"-"+c.getString(8)+"-"+c.getString(9)+"-"+c.getString(10));
                 c.moveToNext();
             }
             c.close();

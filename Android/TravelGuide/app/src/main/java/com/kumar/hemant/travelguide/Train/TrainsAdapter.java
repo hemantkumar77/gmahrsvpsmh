@@ -15,16 +15,17 @@ public class TrainsAdapter extends RecyclerView.Adapter<TrainsAdapter.MyViewHold
     private List<Train> trainsList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvUpStart, tvUpMiddle, tvUpDestination, tvDownStart, tvDownMiddle, tvDownDestination;
+        public TextView tvTrainNo, tvTrainName, tvArrival, tvFromStation, tvFromStationTime, tvToStation, tvToStationTime;
 
         public MyViewHolder(View view) {
             super(view);
-            tvUpStart = (TextView) view.findViewById(R.id.upStart);
-            tvUpMiddle = (TextView) view.findViewById(R.id.upMiddle);
-            tvUpDestination = (TextView) view.findViewById(R.id.upDestination);
-            tvDownStart = (TextView) view.findViewById(R.id.downStart);
-            tvDownMiddle = (TextView) view.findViewById(R.id.downMiddle);
-            tvDownDestination = (TextView) view.findViewById(R.id.downDestination);
+            tvTrainNo = (TextView) view.findViewById(R.id.tv_train_no);
+            tvTrainName = (TextView) view.findViewById(R.id.tv_train_name);
+            tvFromStation = (TextView) view.findViewById(R.id.tv_from_station);
+            tvFromStationTime = (TextView) view.findViewById(R.id.tv_from_station_time);
+            tvToStation = (TextView) view.findViewById(R.id.tv_to_station);
+            tvToStationTime = (TextView) view.findViewById(R.id.tv_to_station_time);
+            tvArrival = (TextView) view.findViewById(R.id.tv_arrival);
         }
     }
 
@@ -43,12 +44,13 @@ public class TrainsAdapter extends RecyclerView.Adapter<TrainsAdapter.MyViewHold
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Train train = trainsList.get(position);
-        holder.tvUpStart.setText(train.getUpStart());
-        holder.tvUpMiddle.setText(train.getUpMiddle());
-        holder.tvUpDestination.setText(train.getUpDestination());
-        holder.tvDownStart.setText(train.getDownStart());
-        holder.tvDownMiddle.setText(train.getDownMiddle());
-        holder.tvDownDestination.setText(train.getDownDestination());
+        holder.tvTrainNo.setText(train.getTrainNo());
+        holder.tvTrainName.setText(train.getTrainName());
+        holder.tvFromStation.setText(train.getFromStation());
+        holder.tvFromStationTime.setText(train.getFromStationTime());
+        holder.tvToStation.setText(train.getToStation());
+        holder.tvToStationTime.setText(train.getToStationTime());
+        holder.tvArrival.setText(train.getArrival());
     }
 
     @Override

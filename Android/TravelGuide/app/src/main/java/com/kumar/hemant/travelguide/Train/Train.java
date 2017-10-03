@@ -1,48 +1,51 @@
 package com.kumar.hemant.travelguide.Train;
 public class Train {
-    private String upStart, upMiddle, upDestination, downStart, downMiddle, downDestination;
+    private String TrainNo, TrainName, Arrival, FromStation, FromStationTime, ToStation, ToStationTime;
 
     public Train() {
     }
 
-    public Train(String upStart, String upMiddle, String upDestination, String downStart, String downMiddle, String downDestination) {
-        this.upStart = upStart;
-        this.upMiddle = upMiddle;
-        this.upDestination = upDestination;
-        this.downStart = downStart;
-        this.downMiddle = downMiddle;
-        this.downDestination = downDestination;
+    public Train(String TrainNo, String TrainName, String FromStation, String FromStationTime, String ToStation, String ToStationTime, String Arrival) {
+        this.TrainNo = TrainNo;
+        this.TrainName = TrainName;
+        this.Arrival = Arrival;
+        this.FromStation = FromStation;
+        this.FromStationTime = FromStationTime;
+        this.ToStation = ToStation;
+        this.ToStationTime = ToStationTime;
     }
-    public String getUpStart() {
-        return upStart;
+    public String getTrainNo() {
+        return TrainNo;
     }
-    public void setUpStart(String upStart) {
-        this.upStart = upStart;
+    public void setTrainNo(String TrainNo) {
+        this.TrainNo = TrainNo;
     }
-    public String getUpMiddle() {
-        return upMiddle;
+    public String getTrainName() { return TrainName;}
+    public void setTrainName(String TrainName) {
+        this.TrainName = TrainName;
     }
-    public void setUpMiddle(String upMiddle) {
-        this.upMiddle = upMiddle;
+    public String getArrival() {
+        return Arrival;
     }
-    public String getUpDestination() {
-        return upDestination;
+    public void setArrival(String Arrival) { this.Arrival = Arrival;}
+    public String getFromStation() {
+        return FromStation;
     }
-    public void setUpDestination(String upDestination) { this.upDestination = upDestination;}
-    public String getDownStart() {
-        return downStart;
+    public void setFromStation(String FromStation) {this.FromStation = FromStation;}
+    public String getFromStationTime() {
+        return FromStationTime;
     }
-    public void setDownStart(String downStart) {this.downStart = downStart;}
-    public String getDownMiddle() {
-        return downMiddle;
+    public void setFromStationTime(String FromStationTime) { this.FromStationTime = FromStationTime;}
+    public String getToStation() {
+        return ToStation;
     }
-    public void setDownMiddle(String downMiddle) {
-        this.upStart = downMiddle;
+    public void setToStation(String ToStation) {
+        this.ToStation = ToStation;
     }
-    public String getDownDestination() {
-        return downDestination;
+    public String getToStationTime() {
+        return ToStationTime;
     }
-    public void setDownDestination(String downDestination) {
-        this.upStart = downDestination;
+    public void setToStationTime(String ToStationTime) {
+        this.ToStationTime = ToStationTime;
     }
 }
