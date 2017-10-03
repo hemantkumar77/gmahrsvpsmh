@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:focusable="true"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
     android:clickable="true"
@@ -12,63 +12,91 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/upStart"
+        android:id="@+id/tv_train_no"
         android:text="AAA"
         android:layout_alignParentTop="true"
-        android:layout_width="150dp"
+        android:layout_width="70dp"
         android:textAlignment="textStart"
-        android:textColor="@color/colorUp"
-        android:layout_height="20dp"/>
-
-    <TextView
-        android:id="@+id/downStart"
-        android:text="DDD"
-        android:layout_width="150dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:textAlignment="textStart"
-        android:textColor="@color/colorDown"
-        android:layout_height="20dp"/>
-
-    <TextView
-        android:id="@+id/upMiddle"
-        android:text="BBB"
-        android:layout_width="150dp"
-        android:textStyle="bold"
+        android:textColor="#FF4081"
         android:textSize="20dp"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/upStart"
-        android:textAlignment="center"
-        android:textColor="@color/colorUp"
-        android:layout_height="25dp"/>
+        android:layout_height="22dp"/>
+
     <TextView
-        android:id="@+id/downMiddle"
+        android:id="@+id/tv_train_name"
+        android:text="DDD"
+        android:layout_width="250dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/tv_train_no"
+        android:textAlignment="textStart"
+        android:textColor="#3F51B9"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_height="22dp"/>
+
+    <TextView
+        android:id="@+id/tv_arrival"
+        android:text="8888"
+        android:layout_width="100dp"
+        android:layout_alignParentRight="true"
+        android:textAlignment="textEnd"
+        android:layout_below="@+id/tv_train_no"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="#3F51B9"
+        android:layout_height="60dp"/>
+
+    <TextView
+        android:id="@+id/tv_from"
+        android:text="From:"
+        android:layout_width="40dp"
+        android:textStyle="bold"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tv_train_no"
+        android:textColor="#FF4081"
+        android:layout_height="22dp"/>
+    <TextView
+        android:id="@+id/tv_from_station"
         android:text="EEE"
         android:textStyle="bold"
-        android:textSize="20dp"
-        android:layout_width="150dp"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/downStart"
-        android:textAlignment="center"
-        android:textColor="@color/colorDown"
-        android:layout_height="25dp"/>
+        android:layout_below="@+id/tv_train_no"
+        android:layout_width="200dp"
+        android:textColor="#3F51B9"
+        android:layout_height="22dp"
+        android:layout_toRightOf="@+id/tv_from"/>
 
     <TextView
-        android:id="@+id/upDestination"
+        android:id="@+id/tv_from_station_time"
         android:text="CCC"
-        android:layout_width="150dp"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/upMiddle"
-        android:textAlignment="textEnd"
-        android:textColor="@color/colorUp"
-        android:layout_height="20dp"/>
+        android:layout_width="50dp"
+        android:layout_below="@+id/tv_train_no"
+        android:layout_toLeftOf="@+id/tv_arrival"
+        android:textColor="#FF4081"
+        android:layout_height="22dp"/>
     <TextView
-        android:id="@+id/downDestination"
-        android:text="FFF"
-        android:layout_width="150dp"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/downMiddle"
-        android:textAlignment="textEnd"
-        android:textColor="@color/colorDown"
-        android:layout_height="20dp"/>
+        android:id="@+id/tv_to"
+        android:text="To:"
+        android:layout_width="40dp"
+        android:textStyle="bold"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tv_from"
+        android:textColor="#FF4081"
+        android:layout_height="22dp"/>
+    <TextView
+        android:id="@+id/tv_to_station"
+        android:text="EEE"
+        android:textStyle="bold"
+        android:layout_below="@+id/tv_from"
+        android:layout_width="200dp"
+        android:textColor="#3F51B9"
+        android:layout_height="22dp"
+        android:layout_toRightOf="@+id/tv_to"/>
+
+    <TextView
+        android:id="@+id/tv_to_station_time"
+        android:text="CCC"
+        android:layout_width="50dp"
+        android:layout_below="@+id/tv_from"
+        android:layout_toLeftOf="@+id/tv_arrival"
+        android:textColor="#FF4081"
+        android:layout_height="22dp"/>
 </RelativeLayout>
