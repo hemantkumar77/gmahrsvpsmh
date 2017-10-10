@@ -15,18 +15,27 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.kumar.hemant.travelguide.CheckList.ChecklistActivity;
 import com.kumar.hemant.travelguide.R;
 import com.kumar.hemant.travelguide.RTO.RTOActivity;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+
+import java.io.File;
 import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 public class AddTrainStation extends Activity implements NavigationView.OnNavigationItemSelectedListener
 {
     public static final String APP_TAG = "com.hemant.kumar";
     private ListView lvTrainStation;
     private Button btNewTrainStation;
+    private Button btImportTrainStation;
     private Spinner spnNewTrainNo;
     private Spinner spnNewStationCode;
     private EditText etNewArrivalTime;
@@ -41,11 +50,13 @@ public class AddTrainStation extends Activity implements NavigationView.OnNaviga
         this.controller = new TrainController(this);
         this.lvTrainStation = (ListView) this.findViewById(R.id. lvTrainStation);
         this.btNewTrainStation = (Button) this.findViewById(R.id.btNewTrainStation);
+        this.btImportTrainStation = (Button) this.findViewById(R.id.btImportTrainStation);
         this.spnNewStationCode = (Spinner) this.findViewById(R.id.spn_station_code);
         this.spnNewTrainNo = (Spinner) this.findViewById(R.id.spn_train_no);
         this.etNewArrivalTime = (EditText) this.findViewById(R.id.etNewArrivalTime);
         this.etNewDepartureTime = (EditText) this.findViewById(R.id.etNewDepartureTime);
         this.btNewTrainStation.setOnClickListener(this.handleNewTrainStationEvent);
+        this.btImportTrainStation.setOnClickListener(this.handleImportTrainStationEvent);
         this.populateTrainStations();
         this.populateStationSpinner();
         this.populateTrainSpinner();
@@ -89,6 +100,43 @@ public class AddTrainStation extends Activity implements NavigationView.OnNaviga
         {
             Log.d(APP_TAG, "New Station button added");
             AddTrainStation.this.controller.addTrainStation(AddTrainStation.this.spnNewTrainNo.getSelectedItem().toString().substring(0,5), AddTrainStation.this.spnNewStationCode.getSelectedItem().toString().substring(0,3),  AddTrainStation.this.etNewArrivalTime.getText().toString(),  AddTrainStation.this.etNewDepartureTime.getText().toString());
+            AddTrainStation.this.populateTrainStations();
+        }
+    };
+    private final View.OnClickListener handleImportTrainStationEvent = new View.OnClickListener()
+    {
+        @Override
+        public void onClick(final View view)
+        {
+            Log.d(APP_TAG, "New Station button added");
+            String strToastText = "";
+            String filePath = "/storage/emulated/0/train_station.xml";
+            File trainstationFile= new File(filePath);
+            Toast.makeText(AddTrainStation.this, "Train Station Time Imported Successfully1!!!", Toast.LENGTH_LONG).show();
+            try{
+                DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+                Document doc = docBuilder.parse(trainstationFile);
+                Node station_code_node = doc.getElementsByTagName("station_code").item(0);
+                Node train_no_node = doc.getElementsByTagName("train_no").item(0);
+                Node time_arrival_node = doc.getElementsByTagName("time_arrival").item(0);
+                Node time_departure_node = doc.getElementsByTagName("time_departure").item(0);
+                strToastText = ""+station_code_node.getTextContent();
+                for(int i=0;i<1002;i++)
+                {
+                    station_code_node= doc.getElementsByTagName("station_code").item(i);
+                    train_no_node = doc.getElementsByTagName("train_no").item(i);
+                    time_arrival_node = doc.getElementsByTagName("time_arrival").item(i);
+                    time_departure_node = doc.getElementsByTagName("time_departure").item(i);
+                    strToastText = strToastText + "," + station_code_node.getTextContent()+":" + station_code_node.getTextContent();
+                    AddTrainStation.this.controller.addTrainStation( train_no_node.getTextContent(), station_code_node.getTextContent(), time_arrival_node.getTextContent(), time_departure_node.getTextContent());
+                }
+                AddTrainStation.this.populateTrainStations();
+                Toast.makeText(AddTrainStation.this, "Train Station Time Imported Successfully!!!", Toast.LENGTH_LONG).show();
+            }
+            catch(Exception e){
+                Log.e("Jobs", "Exception parse xml :"+e);
+            }
             AddTrainStation.this.populateTrainStations();
         }
     };

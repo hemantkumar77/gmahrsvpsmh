@@ -18,6 +18,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import java.io.File;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import com.kumar.hemant.travelguide.CheckList.ChecklistActivity;
 import com.kumar.hemant.travelguide.R;
@@ -30,6 +45,7 @@ public class AddStation extends AppCompatActivity implements NavigationView.OnNa
     public static final String APP_TAG = "com.hemant.kumar";
     private ListView lvStation;
     private Button btNewStation;
+    private Button btImportStation;
     private EditText etNewStationCode;
     private EditText etNewStationName;
     private TrainController controller;
@@ -43,9 +59,12 @@ public class AddStation extends AppCompatActivity implements NavigationView.OnNa
         this.controller = new TrainController(this);
         this.lvStation = (ListView) this.findViewById(R.id. lvStation);
         this.btNewStation = (Button) this.findViewById(R.id.btNewStation);
+        this.btImportStation = (Button) this.findViewById(R.id.btImportStation);
         this.etNewStationCode = (EditText) this.findViewById(R.id.etStationCode);
         this.etNewStationName = (EditText) this.findViewById(R.id.etStationName);
-        this.btNewStation.setOnClickListener(this.handleNewTaskEvent);
+        this.btNewStation.setOnClickListener(this.handleNewStationEvent);
+        this.btImportStation.setOnClickListener(this.handleImportStationEvent);
+
         this.populateStations();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -77,16 +96,56 @@ public class AddStation extends AppCompatActivity implements NavigationView.OnNa
 
     }
 
-    private final View.OnClickListener handleNewTaskEvent = new View.OnClickListener()
+    private final View.OnClickListener handleNewStationEvent = new View.OnClickListener()
     {
         @Override
         public void onClick(final View view)
         {
             Log.d(APP_TAG, "New Station button added");
+
             if(AddStation.this.etNewStationCode.getText().toString().length()==3)
                 AddStation.this.controller.addStation(AddStation.this.etNewStationCode.getText().toString(), AddStation.this.etNewStationName.getText().toString());
             AddStation.this.populateStations();
+
         }
+    };
+    private final View.OnClickListener handleImportStationEvent = new View.OnClickListener()
+    {
+        @Override
+        public void onClick(final View view)
+        {
+            Log.d(APP_TAG, "New Station button added");
+
+            String strToastText = "";
+            String filePath = "/storage/emulated/0/stations.xml";
+            File rtoFile= new File(filePath);
+
+            try{
+                DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+                Document doc = docBuilder.parse(rtoFile);
+                Node station_code_node = doc.getElementsByTagName("station_code").item(1);
+                Node station_name_node = doc.getElementsByTagName("station_name").item(1);
+                strToastText = "";
+
+
+                for(int i=0;i<17;i++)
+                {
+                    station_code_node= doc.getElementsByTagName("station_code").item(i);
+                    station_name_node = doc.getElementsByTagName("station_name").item(i);
+                    strToastText = strToastText + "," + station_code_node.getTextContent()+":" + station_name_node.getTextContent();
+                    AddStation.this.controller.addStation(station_code_node.getTextContent(), station_name_node.getTextContent());
+                }
+                AddStation.this.populateStations();
+
+                Toast.makeText(AddStation.this, "Station Imported Successfully!!!", Toast.LENGTH_LONG).show();
+            }
+            catch(Exception e){
+                Log.e("Jobs", "Exception parse xml :"+e);
+            }
+            AddStation.this.populateStations();
+        }
+
     };
     @Override
     protected void onStart()

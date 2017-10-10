@@ -14,13 +14,14 @@
     <TableRow android:id="@+id/row2" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_below="@+id/row" android:orientation="horizontal" >
         <Spinner
             android:id="@+id/spn_station_code"
-            android:layout_width="match_parent"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_below="@+id/detail1"
-            android:layout_marginEnd="22dp"
+            android:layout_marginEnd="10dp"
             android:entries="@array/station_name"
-            android:layout_marginTop="52dp" />
+            android:layout_marginTop="10dp" />
+        <Button android:id="@+id/btImportTrainStation" android:layout_width="100dp" android:layout_height="wrap_content" android:text="Import" >
+        </Button>
     </TableRow>
     <TableRow android:id="@+id/row3" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_below="@+id/row2" android:orientation="horizontal" >
         <EditText android:id="@+id/etNewArrivalTime" android:hint="Arrival time"  android:layout_width="0dp" android:layout_weight="0.3"  android:layout_height="wrap_content" android:textSize="18sp" android:inputType="number" >

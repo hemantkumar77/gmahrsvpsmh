@@ -41,6 +41,7 @@ public class TrainActivity extends AppCompatActivity implements NavigationView.O
     private ListView lvTrainTimes;
     private ImageButton ibt_up_down;
     private Boolean boolUpFlag;
+    private String strStationCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +62,14 @@ public class TrainActivity extends AppCompatActivity implements NavigationView.O
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
+        strStationCode="";
         stationName = intent.getStringExtra(SearchStationActivity.EXTRA_MESSAGE);
-        if(stationName == null)
-            stationName = "DEHUROAD";
+        if(stationName == null) {
+            strStationCode = "deh";
+            stationName = "Dehuroad";
+        }
+        else
+            strStationCode = stationName.substring(0,3).toLowerCase();
         tv_current_train = (TextView) findViewById(R.id.tv_current_station);
         tv_current_train.setText(stationName);
         boolUpFlag=true;
@@ -104,7 +110,9 @@ public class TrainActivity extends AppCompatActivity implements NavigationView.O
     {
         ///////////////////////////
         //trainList.add(train);
-        final List<String> traintimes = this.controller.getTrainTimes();
+
+
+        final List<String> traintimes = this.controller.getTrainTimes(strStationCode);
         String arrivalTime="";
         if (traintimes.size()>0)
             arrivalTime = ""+traintimes.size()+":" +traintimes.get(0).toString();
@@ -115,19 +123,18 @@ public class TrainActivity extends AppCompatActivity implements NavigationView.O
         String[] strStationTime;
         String temp = "";
         Train train;
-        if (stationName.contains("Dehuroad".toUpperCase())) {
-            int i=0;
-            trainList.clear();
-            if(boolUpFlag)
-                i=0;
-            else
-                i=1;
-            for(;i<traintimes.size();i=i+2)
-            {
-                strStationTime = traintimes.get(i).split("-");
-                train = new Train(strStationTime[0], strStationTime[1], strStationTime[4],strStationTime[5], strStationTime[7], strStationTime[8], strStationTime[10]);
-                trainList.add(train);
-            }
+
+        int i=0;
+        trainList.clear();
+        if(boolUpFlag)
+            i=0;
+        else
+            i=1;
+        for(;i<traintimes.size();i=i+2)
+        {
+            strStationTime = traintimes.get(i).split("-");
+            train = new Train(strStationTime[0], strStationTime[1], strStationTime[4],strStationTime[5], strStationTime[7], strStationTime[8], strStationTime[10]);
+            trainList.add(train);
         }
 
         mAdapter.notifyDataSetChanged();
@@ -135,7 +142,7 @@ public class TrainActivity extends AppCompatActivity implements NavigationView.O
 
     private void populateTrainTimes()
     {
-        final List<String> traintimes = this.controller.getTrainTimes();
+        final List<String> traintimes = this.controller.getTrainTimes(stationName);
         Log.d(AddTrainStation.APP_TAG, String.format("%d found tasks ", traintimes.size()));
         this.lvTrainTimes.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, traintimes.toArray(new String[] {})));
         this.lvTrainTimes.setOnItemClickListener(new AdapterView.OnItemClickListener()

@@ -61,10 +61,10 @@ final class TrainModel
         final Cursor c = this.database.query(TrainModel.TABLE_NAME, new String[] { "train_no" , "train_name" , "source" , "destination" , "days_of_week"}, null, null, null, null, "train_no", null);
         return c;
     }
-    public Cursor loadAllTrainTime()
+    public Cursor loadAllTrainTime(String station_selected)
     {
         Log.d(TrainView.APP_TAG, "loadAllTasks()");
-        String station_selected = "deh";
+        //String station_selected = "deh";
         //final Cursor c = this.database.rawQuery("SELECT ts.train_no, t.train_name, s.station_code, s.station_name, ts.time_arrival, t.days_of_week, (select s1.station_name from tblStation s1 where s1.station_code=t.source) as Source, (select s2.station_name from tblStation s2 where s2.station_code=t.destination) as Destination FROM tblTrain AS t, tblStation AS s, tblTrainStation AS ts WHERE ts.station_code=s.station_code and t.train_no=ts.train_no ORDER BY t.train_no, ts.time_arrival;",null);
         final Cursor c = this.database.rawQuery("SELECT ts.train_no, t.train_name, t.days_of_week, t.source as source_station_code, (select s1.station_name from tblStation s1 where s1.station_code=t.source) AS Source, (select ts1.time_arrival from tblTrainStation ts1 where ts1.train_no=ts.train_no and ts1.station_code=t.source) as SourceTime, t.destination as destination_station_code, (select s2.station_name from tblStation s2 where s2.station_code=t.destination) AS Destination, (select ts2.time_arrival from tblTrainStation ts2 where ts2.train_no=ts.train_no and ts2.station_code=t.destination) as DestinationTime, s.station_name, ts.time_arrival FROM tblTrain AS t, tblStation AS s, tblTrainStation AS ts WHERE ts.station_code=s.station_code and t.train_no=ts.train_no and s.station_code='"+ station_selected +"' ORDER BY t.train_no, ts.time_arrival;",null);
         String dbPath1 = this.database.getPath();
@@ -83,6 +83,12 @@ final class TrainModel
     {
         Log.d(TrainView.APP_TAG, "loadAllStations()");
         final Cursor c1 = this.database.query(TrainModel.TABLE_NAME2, new String[] { "station_code" , "station_name"}, null, null, null, null, "station_name",null);
+        return c1;
+    }
+    public Cursor loadOneStations(String station_code)
+    {
+        Log.d(TrainView.APP_TAG, "loadOneStations()");
+        final Cursor c1 = this.database.query(TrainModel.TABLE_NAME2, new String[] { "station_code" , "station_name"}, null, null, station_code, null, "station_name",null);
         return c1;
     }
     public void addTrainStation(ContentValues data) {

@@ -98,6 +98,22 @@ public class TrainController
             c.close();
         } return stations;
     }
+
+    public List<String> getOneStations(String station_code)
+    {
+        Cursor c = model.loadOneStations(station_code);
+        stations.clear();
+        if (c != null) { c.moveToFirst();
+            while (c.isAfterLast() == false)
+            {
+                stations.add(c.getString(0)+"-"+c.getString(1));
+                Log.v("DDDDDDDDATE","...144: "+c.getString(0));
+                c.moveToNext();
+            }
+            c.close();
+        } return stations;
+    }
+
     public List<String> getTrainStations()
     {
         Cursor c = model.loadAllTrainStations();
@@ -141,9 +157,9 @@ public class TrainController
             c.close();
         } return stations;
     }
-    public List<String> getTrainTimes()
+    public List<String> getTrainTimes(String station_selected)
     {
-        Cursor c = model.loadAllTrainTime();
+        Cursor c = model.loadAllTrainTime(station_selected);
         traintimes.clear();
         //traintimes.add("Arrival Time - Departure Time");
         if (c != null) { c.moveToFirst();
