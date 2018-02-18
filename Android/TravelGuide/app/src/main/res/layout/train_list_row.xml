@@ -5,51 +5,59 @@
     android:focusable="true"
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
     android:clickable="true"
-    android:background="?android:attr/selectableItemBackground"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/tv_train_no"
         android:text="AAA"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:layout_alignParentTop="true"
-        android:layout_width="70dp"
+        android:layout_width="100dp"
         android:textAlignment="textStart"
-        android:textColor="#FF4081"
+        android:textColor="#566573"
         android:textSize="20dp"
-        android:layout_height="22dp"/>
+        android:background="#ffccff"
+        android:layout_height="25dp"/>
 
     <TextView
         android:id="@+id/tv_train_name"
         android:text="DDD"
-        android:layout_width="250dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="#ffccff"
+        android:layout_width="match_parent"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/tv_train_no"
-        android:textAlignment="textStart"
-        android:textColor="#3F51B9"
+        android:textAlignment="textEnd"
+        android:textColor="#566573"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:layout_height="22dp"/>
+        android:layout_height="25dp"/>
 
     <TextView
         android:id="@+id/tv_arrival"
         android:text="8888"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:layout_width="100dp"
         android:layout_alignParentRight="true"
         android:textAlignment="textEnd"
         android:layout_below="@+id/tv_train_no"
         android:textSize="30dp"
         android:textStyle="bold"
-        android:textColor="#3F51B9"
-        android:layout_height="60dp"/>
+        android:textColor="#000000"
+        android:layout_height="33dp"/>
 
     <TextView
         android:id="@+id/tv_from"
         android:text="From:"
-        android:layout_width="40dp"
-        android:textStyle="bold"
+        android:layout_width="60dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/tv_train_no"
         android:textColor="#FF4081"
@@ -57,16 +65,17 @@
     <TextView
         android:id="@+id/tv_from_station"
         android:text="EEE"
-        android:textStyle="bold"
         android:layout_below="@+id/tv_train_no"
+        android:layout_toEndOf="@+id/tv_from"
         android:layout_width="200dp"
-        android:textColor="#3F51B9"
+        android:textColor="#FF4081"
         android:layout_height="22dp"
         android:layout_toRightOf="@+id/tv_from"/>
 
     <TextView
         android:id="@+id/tv_from_station_time"
         android:text="CCC"
+        android:textStyle="bold"
         android:layout_width="50dp"
         android:layout_below="@+id/tv_train_no"
         android:layout_toLeftOf="@+id/tv_arrival"
@@ -75,16 +84,16 @@
     <TextView
         android:id="@+id/tv_to"
         android:text="To:"
-        android:layout_width="40dp"
-        android:textStyle="bold"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_width="60dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/tv_from"
-        android:textColor="#FF4081"
+        android:textColor="#3F51B9"
         android:layout_height="22dp"/>
     <TextView
         android:id="@+id/tv_to_station"
         android:text="EEE"
-        android:textStyle="bold"
         android:layout_below="@+id/tv_from"
         android:layout_width="200dp"
         android:textColor="#3F51B9"
@@ -94,9 +103,10 @@
     <TextView
         android:id="@+id/tv_to_station_time"
         android:text="CCC"
+        android:textStyle="bold"
         android:layout_width="50dp"
         android:layout_below="@+id/tv_from"
         android:layout_toLeftOf="@+id/tv_arrival"
-        android:textColor="#FF4081"
+        android:textColor="#3F51B9"
         android:layout_height="22dp"/>
 </RelativeLayout>

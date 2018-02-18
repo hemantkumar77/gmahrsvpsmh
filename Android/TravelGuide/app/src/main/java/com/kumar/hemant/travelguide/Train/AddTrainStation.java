@@ -152,6 +152,42 @@ public class AddTrainStation extends Activity implements NavigationView.OnNaviga
     }
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_select_station) {
+            Intent i = new Intent(AddTrainStation.this, SearchStationActivity.class);
+            startActivity(i);
+            return true;
+        }
+        if (id == R.id.action_add_train) {
+            Intent i = new Intent(AddTrainStation.this, AddTrain.class);
+            startActivity(i);
+            return true;
+        }
+        if (id == R.id.action_add_station) {
+            Intent i = new Intent(AddTrainStation.this, AddStation.class);
+            startActivity(i);
+            return true;
+        }
+        if (id == R.id.action_add_train_station) {
+            Intent i = new Intent(AddTrainStation.this, AddTrainStation.class);
+            startActivity(i);
+            return true;
+        }
+        if (id == R.id.action_update_train_time) {
+            Intent i = new Intent(AddTrainStation.this, UpdateTrainTime.class);
+            startActivity(i);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+    @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();

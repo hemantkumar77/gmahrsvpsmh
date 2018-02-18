@@ -21,4 +21,9 @@
         android:orderInCategory="100"
         android:title="Add Train Station"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_update_train_time"
+        android:orderInCategory="100"
+        android:title="Change Train Time"
+        app:showAsAction="never" />
 </menu>

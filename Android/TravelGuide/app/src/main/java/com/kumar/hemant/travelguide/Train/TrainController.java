@@ -48,6 +48,15 @@ public class TrainController
         data_train_station.put("time_departure", time_departure);
         model.addTrainStation(data_train_station);
     }
+    public void updateTrainTime(final String train_no, final String station_code, final String time_arrival, final String time_departure)
+    {
+        final ContentValues data_train_station = new ContentValues();
+        data_train_station.put("train_no", train_no);
+        data_train_station.put("station_code", station_code);
+        data_train_station.put("time_arrival", time_arrival);
+        data_train_station.put("time_departure", time_departure);
+        model.updateTrainTime(train_no, station_code, time_arrival, time_departure);
+    }
     public void deleteTrain(final String train_no) {
         Log.v("DDDDDDDDATE","...146: "+train_no.substring(0,3));
         model.deleteTrain("train_no='" + train_no.substring(0,5) + "'");
@@ -117,6 +126,20 @@ public class TrainController
     public List<String> getTrainStations()
     {
         Cursor c = model.loadAllTrainStations();
+        trainstations.clear();
+        if (c != null) { c.moveToFirst();
+            while (c.isAfterLast() == false)
+            {
+                trainstations.add(c.getString(0)+"-"+c.getString(1)+"-"+c.getString(2)+"-"+c.getString(3));
+                Log.v("DDDDDDDDATE","...156Hem: "+c.getString(0));
+                c.moveToNext();
+            }
+            c.close();
+        } return trainstations;
+    }
+    public List<String> getTrainStations(String trainNo)
+    {
+        Cursor c = model.loadTrainStations(trainNo);
         trainstations.clear();
         if (c != null) { c.moveToFirst();
             while (c.isAfterLast() == false)

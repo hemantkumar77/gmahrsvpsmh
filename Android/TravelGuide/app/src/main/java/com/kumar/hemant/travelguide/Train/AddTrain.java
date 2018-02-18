@@ -19,18 +19,27 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.kumar.hemant.travelguide.CheckList.ChecklistActivity;
 import com.kumar.hemant.travelguide.R;
 import com.kumar.hemant.travelguide.RTO.RTOActivity;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+
+import java.io.File;
 import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 public class AddTrain extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
     public static final String APP_TAG = "com.hemant.kumar";
     private ListView lvTrain;
     private Button btNewTrain;
+    private Button btImportTrain;
     private EditText etNewTrainNo;
     private EditText etNewTrainName;
     private Spinner spnNewSource;
@@ -47,12 +56,14 @@ public class AddTrain extends AppCompatActivity implements NavigationView.OnNavi
         this.controller = new TrainController(this);
         this.lvTrain = (ListView) this.findViewById(R.id.lvTask);
         this.btNewTrain = (Button) this.findViewById(R.id.bt_new_train);
+        this.btImportTrain = (Button) this.findViewById(R.id.bt_import_train);
         this.etNewTrainNo = (EditText) this.findViewById(R.id.et_train_no);
         this.etNewTrainName = (EditText) this.findViewById(R.id.et_train_name);
         this.spnNewSource = (Spinner) this.findViewById(R.id.spn_source);
         this.spnNewDestination = (Spinner) this.findViewById(R.id.spn_destination);
         this.etNewDaysOfWeek = (EditText) this.findViewById(R.id.et_days_of_week);
         this.btNewTrain.setOnClickListener(this.handleNewTaskEvent);
+        this.btImportTrain.setOnClickListener(this.handleImportStationEvent);
         this.populateTrains();
         this.populateSourceSpinner();
         this.populateDestinationSpinner();
@@ -109,6 +120,52 @@ public class AddTrain extends AppCompatActivity implements NavigationView.OnNavi
             AddTrain.this.populateTrains();
         }
     };
+    private final View.OnClickListener handleImportStationEvent = new View.OnClickListener()
+    {
+        @Override
+        public void onClick(final View view)
+        {
+            Log.d(APP_TAG, "New Train button added");
+
+            String strToastText = "";
+            String filePath = "/storage/emulated/0/trains.xml";
+            File rtoFile= new File(filePath);
+
+            try{
+                DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+                Document doc = docBuilder.parse(rtoFile);
+                Node train_no_node = doc.getElementsByTagName("train_no").item(1);
+                Node train_name_node = doc.getElementsByTagName("train_name").item(1);
+                Node source_node = doc.getElementsByTagName("source").item(1);
+                Node destination_node = doc.getElementsByTagName("destination").item(1);
+                Node days_of_week_node = doc.getElementsByTagName("days_of_week").item(1);
+                strToastText = "";
+
+
+                Toast.makeText(AddTrain.this, "Into Import button click....", Toast.LENGTH_LONG).show();
+                for(int i=0;i<42;i++)
+                {
+                    train_no_node= doc.getElementsByTagName("train_no").item(i);
+                    train_name_node = doc.getElementsByTagName("train_name").item(i);
+                    source_node= doc.getElementsByTagName("source").item(i);
+                    destination_node = doc.getElementsByTagName("destination").item(i);
+                    days_of_week_node= doc.getElementsByTagName("days_of_week").item(i);
+                    strToastText = strToastText + "," + train_name_node.getTextContent()+":" + train_no_node.getTextContent();
+                    AddTrain.this.controller.addTrain(train_no_node.getTextContent(), train_name_node.getTextContent(), source_node.getTextContent(), destination_node.getTextContent(), days_of_week_node.getTextContent());
+                }
+                Toast.makeText(AddTrain.this, "Out of Import button click....", Toast.LENGTH_LONG).show();
+                AddTrain.this.populateTrains();
+
+                Toast.makeText(AddTrain.this, "Station Imported Successfully!!!", Toast.LENGTH_LONG).show();
+            }
+            catch(Exception e){
+                Log.e("Jobs", "Exception parse xml :"+e);
+            }
+            AddTrain.this.populateTrains();
+        }
+
+    };
     @Override
     protected void onStart()
     {
@@ -152,6 +209,11 @@ public class AddTrain extends AppCompatActivity implements NavigationView.OnNavi
         }
         if (id == R.id.action_add_train_station) {
             Intent i = new Intent(AddTrain.this, AddTrainStation.class);
+            startActivity(i);
+            return true;
+        }
+        if (id == R.id.action_update_train_time) {
+            Intent i = new Intent(AddTrain.this, UpdateTrainTime.class);
             startActivity(i);
             return true;
         }

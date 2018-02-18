@@ -8,7 +8,21 @@
     <Spinner android:id="@+id/spn_destination" android:layout_width="150dp" android:layout_height="wrap_content" android:layout_alignParentRight="true" android:layout_below="@+id/et_train_no" android:layout_marginEnd="22dp"/>
     <EditText android:id="@+id/et_days_of_week" android:hint="Days of Week" android:layout_width="200dp" android:layout_alignParentLeft="true" android:layout_below="@+id/spn_source" android:layout_height="wrap_content" android:textSize="18sp" >
     </EditText>
-    <Button android:id="@+id/bt_new_train" android:layout_width="100dp" android:layout_height="wrap_content"  android:layout_alignParentRight="true" android:layout_below="@+id/spn_source" android:text="@string/add_button_name" >
+    <Button
+        android:id="@+id/bt_new_train"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/et_days_of_week"
+        android:layout_below="@+id/spn_source"
+        android:text="@string/add_button_name" >
+    </Button>
+    <Button
+        android:id="@+id/bt_import_train"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/spn_source"
+        android:text="Import" >
     </Button>
     <ListView android:id="@+id/lvTask" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_below="@+id/bt_new_train">
     </ListView>

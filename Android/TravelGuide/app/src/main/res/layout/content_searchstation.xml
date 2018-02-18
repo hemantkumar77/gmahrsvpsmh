@@ -12,7 +12,6 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/detail1"
         android:layout_marginEnd="22dp"
-        android:entries="@array/station_name"
         android:layout_marginTop="52dp" />
     <Button android:id="@+id/detail1"
         android:layout_width="wrap_content"

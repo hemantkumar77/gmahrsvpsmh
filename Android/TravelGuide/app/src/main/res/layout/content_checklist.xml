@@ -19,7 +19,7 @@
         <TableLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="#ffffff" android:stretchColumns="*">
 
             <TableRow android:background="#80ffff">
-                <TextView android:background="#80ffff" android:textSize="24sp" android:id="@+id/textView1" android:textColor="#ff0000" android:layout_width="wrap_content" android:layout_weight="0.2" android:layout_height="wrap_content" android:gravity="center"  android:layout_span="4" />
+                <TextView android:id="@+id/tv_date" android:background="#80ffff" android:textSize="24sp" android:textColor="#ff0000" android:layout_width="wrap_content" android:layout_weight="0.2" android:layout_height="wrap_content" android:gravity="center"  android:layout_span="4" />
             </TableRow>
             <TableRow android:background="#80ffff">
                 <TextView android:background="#80ffff" android:textSize="14sp" android:id="@+id/txtSummary" android:textColor="#ff0000" android:layout_width="wrap_content" android:layout_weight="0.8" android:layout_height="wrap_content" android:gravity="center" android:layout_span="4" />

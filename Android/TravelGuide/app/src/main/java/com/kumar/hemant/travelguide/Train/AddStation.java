@@ -20,25 +20,18 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+
 import java.io.File;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 
 import com.kumar.hemant.travelguide.CheckList.ChecklistActivity;
 import com.kumar.hemant.travelguide.R;
 import com.kumar.hemant.travelguide.RTO.RTOActivity;
 
 import java.util.List;
+import android.widget.Toast;
 
 public class AddStation extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -74,7 +67,6 @@ public class AddStation extends AppCompatActivity implements NavigationView.OnNa
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
     }
 
     private void populateStations()
@@ -93,7 +85,6 @@ public class AddStation extends AppCompatActivity implements NavigationView.OnNa
                 AddStation.this.populateStations();
             }
         });
-
     }
 
     private final View.OnClickListener handleNewStationEvent = new View.OnClickListener()
@@ -129,6 +120,7 @@ public class AddStation extends AppCompatActivity implements NavigationView.OnNa
                 strToastText = "";
 
 
+                Toast.makeText(AddStation.this, "Into Import button click....", Toast.LENGTH_LONG).show();
                 for(int i=0;i<17;i++)
                 {
                     station_code_node= doc.getElementsByTagName("station_code").item(i);
@@ -136,6 +128,7 @@ public class AddStation extends AppCompatActivity implements NavigationView.OnNa
                     strToastText = strToastText + "," + station_code_node.getTextContent()+":" + station_name_node.getTextContent();
                     AddStation.this.controller.addStation(station_code_node.getTextContent(), station_name_node.getTextContent());
                 }
+                Toast.makeText(AddStation.this, "Out of Import button click....", Toast.LENGTH_LONG).show();
                 AddStation.this.populateStations();
 
                 Toast.makeText(AddStation.this, "Station Imported Successfully!!!", Toast.LENGTH_LONG).show();
@@ -190,6 +183,11 @@ public class AddStation extends AppCompatActivity implements NavigationView.OnNa
         }
         if (id == R.id.action_add_train_station) {
             Intent i = new Intent(AddStation.this, AddTrainStation.class);
+            startActivity(i);
+            return true;
+        }
+        if (id == R.id.action_update_train_time) {
+            Intent i = new Intent(AddStation.this, UpdateTrainTime.class);
             startActivity(i);
             return true;
         }

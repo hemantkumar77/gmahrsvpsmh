@@ -20,7 +20,7 @@
             android:layout_marginEnd="10dp"
             android:entries="@array/station_name"
             android:layout_marginTop="10dp" />
-        <Button android:id="@+id/btImportTrainStation" android:layout_width="100dp" android:layout_height="wrap_content" android:text="Import" >
+        <Button android:layout_width="100dp" android:id="@+id/btImportTrainStation" android:background="@drawable/button_date" android:layout_height="wrap_content" android:text="Import" >
         </Button>
     </TableRow>
     <TableRow android:id="@+id/row3" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_below="@+id/row2" android:orientation="horizontal" >
@@ -28,7 +28,7 @@
         </EditText>
         <EditText android:id="@+id/etNewDepartureTime" android:hint="Departure Time"  android:layout_width="0dp" android:layout_weight="0.3"  android:layout_height="wrap_content" android:textSize="18sp" android:inputType="number">
         </EditText>
-        <Button android:id="@+id/btNewTrainStation" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/add_button_name" >
+        <Button android:id="@+id/btNewTrainStation"  android:background="@drawable/button_date" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/add_button_name" >
         </Button>
     </TableRow>
     <ListView android:id="@+id/lvTrainStation" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_alignParentTop="false"  android:layout_below="@+id/row3">

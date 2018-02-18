@@ -46,7 +46,9 @@ import org.w3c.dom.NodeList;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.text.*;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -73,47 +75,14 @@ public class ChecklistActivity extends AppCompatActivity implements NavigationVi
     static final int DATE_DIALOG_ID = 1;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-/*        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_checklist);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view_checklist);
-        mAdapter = new TrainsAdapter(trainList);
-        RecyclerView.LayoutManager mLayoutManager2 = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(mLayoutManager2);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-        recyclerView.setAdapter(mAdapter);
-
-        prepareTrainData();
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);*/
-        /////////////////////////////////////
-
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checklist);
         datasource = new ActionsDataSource(this);
         datasource.open();
 
-        tv2 = (TextView) findViewById(R.id.textView1);
+        tv2 = (TextView) findViewById(R.id.tv_date);
         tv2.setText(datasource.getStringDate());
         findViewById(R.id.datebtn).setOnClickListener(new OnClickListener() {
             @Override
@@ -152,7 +121,6 @@ public class ChecklistActivity extends AppCompatActivity implements NavigationVi
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
     }
 
     public void onClick(View view) {
@@ -356,12 +324,8 @@ public class ChecklistActivity extends AppCompatActivity implements NavigationVi
         int mYear= Integer.parseInt(""+tv2.getText().subSequence(0,4));
         int mMonth= Integer.parseInt(""+tv2.getText().subSequence(5,7));
         int mDay= Integer.parseInt(""+tv2.getText().subSequence(8,10));
-        //int mYear = c.get(Calendar.YEAR);
-        //int mMonth = c.get(Calendar.MONTH);
-        //int mDay = c.get(Calendar.DAY_OF_MONTH);
 
         DatePickerDialog.OnDateSetListener mDateSetListener = null;
-        //updateDisplay();
         DatePickerDialog d = new DatePickerDialog(this, mDateSetListener,mYear,  mMonth, mDay);
         d.show();
     }
@@ -388,6 +352,11 @@ public class ChecklistActivity extends AppCompatActivity implements NavigationVi
     OnDateSetListener ondate = new OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+            SimpleDateFormat simpledateformat = new SimpleDateFormat("EEEE");
+            Date date = new Date(year, monthOfYear, dayOfMonth-1);
+            String dayOfWeek = simpledateformat.format(date);
+
             int month1=monthOfYear+1;
             String month2="";
             if(month1<10)
@@ -402,7 +371,7 @@ public class ChecklistActivity extends AppCompatActivity implements NavigationVi
             else
                 day2=""+day1;
 
-            tv2.setText(String.valueOf(year) + " " + month2 + " " + day2);
+            tv2.setText(String.valueOf(year) + " " + month2 + " " + day2+" "+dayOfWeek);
 
             Toast.makeText(
                     ChecklistActivity.this,
