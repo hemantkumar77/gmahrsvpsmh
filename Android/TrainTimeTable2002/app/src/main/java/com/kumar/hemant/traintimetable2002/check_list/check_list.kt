@@ -1,13 +1,11 @@
 package com.kumar.hemant.traintimetable2002.check_list
 
-import android.app.DatePickerDialog
-import android.app.DatePickerDialog.OnDateSetListener
-import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.Manifest
+import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
-import android.os.Environment
+import android.util.Log
 
 /*
 import android.support.design.widget.NavigationView
@@ -19,16 +17,13 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 */
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.view.View.OnClickListener
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.DatePicker
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -39,34 +34,26 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.kumar.hemant.traintimetable2002.R
-import com.kumar.hemant.traintimetable2002.check_list.Action
-import com.kumar.hemant.traintimetable2002.check_list.ActionsDataSource
-import com.kumar.hemant.traintimetable2002.check_list.DatePickerFragment
-import kotlinx.android.synthetic.main.content_check_list.*
+import com.kumar.hemant.traintimetable2002.RTO.RTO
 /*
-import com.kumar.hemant.traintimetable2002.check_list.RTO.RTOActivity
-import com.kumar.hemant.traintimetable2002.check_list.RTO.RTOActivity
-import com.kumar.hemant.traintimetable2002.check_list.Train.MVCView
-import com.kumar.hemant.traintimetable2002.check_list.Train.SearchStationActivity
-import com.kumar.hemant.traintimetable2002.check_list.Train.Train
-import com.kumar.hemant.traintimetable2002.check_list.Train.TrainActivity
-import com.kumar.hemant.traintimetable2002.check_list.Train.TrainActivity
-import com.kumar.hemant.traintimetable2002.check_list.Train.TrainsAdapter
+import com.kumar.hemant.traintimetable2002.check_list1.RTO.RTOActivity
+import com.kumar.hemant.traintimetable2002.check_list1.RTO.RTOActivity
+import com.kumar.hemant.traintimetable2002.check_list1.Train.MVCView
+import com.kumar.hemant.traintimetable2002.check_list1.Train.SearchStationActivity
+import com.kumar.hemant.traintimetable2002.check_list1.Train.Train
+import com.kumar.hemant.traintimetable2002.check_list1.Train.TrainActivity
+import com.kumar.hemant.traintimetable2002.check_list1.Train.TrainActivity
+import com.kumar.hemant.traintimetable2002.check_list1.Train.TrainsAdapter
 */
 import java.io.File
 import java.lang.Exception
 import java.text.*
 import java.util.*
-import java.util.List
-import javax.xml.parsers.DocumentBuilder
 import javax.xml.parsers.DocumentBuilderFactory
 import javax.xml.transform.dom.DOMSource
-import javax.xml.transform.OutputKeys
 import javax.xml.transform.stream.StreamResult
 import javax.xml.transform.Transformer
 import javax.xml.transform.TransformerFactory
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import kotlin.collections.ArrayList
 import org.w3c.dom.Document
 import org.w3c.dom.Element
@@ -74,11 +61,11 @@ import org.w3c.dom.Node
 import org.w3c.dom.NodeList
 
 class check_list : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-/* Documentation
-https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html#foreground.type=clipart&foreground.clipart=beach_access&foreground.space.trim=1&foreground.space.pad=0.25&foreColor=rgb(63%2C%2081%2C%20181)&backColor=rgb(244%2C%2067%2C%2054)&crop=0&backgroundShape=square&effects=shadow&name=ic_launcher
-https://turreta.com/2017/07/07/how-to-write-xml-in-kotin-using-dom/
-https://turreta.com/2017/07/07/how-to-read-xml-in-kotlin-using-dom-parser/
-*/
+    /* Documentation
+    https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html#foreground.type=clipart&foreground.clipart=beach_access&foreground.space.trim=1&foreground.space.pad=0.25&foreColor=rgb(63%2C%2081%2C%20181)&backColor=rgb(244%2C%2067%2C%2054)&crop=0&backgroundShape=square&effects=shadow&name=ic_launcher
+    https://turreta.com/2017/07/07/how-to-write-xml-in-kotin-using-dom/
+    https://turreta.com/2017/07/07/how-to-read-xml-in-kotlin-using-dom-parser/
+    */
     private lateinit var btnDate : Button
     private lateinit var btnLoad : Button
     private lateinit var btnSave : Button
@@ -123,18 +110,32 @@ https://turreta.com/2017/07/07/how-to-read-xml-in-kotlin-using-dom-parser/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.content_check_list)
+        setContentView(R.layout.activity_check_list)
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
+        val fab: FloatingActionButton = findViewById(R.id.fab)
+        fab.setOnClickListener { view ->
+            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show()
+        }
+        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
+        val navView: NavigationView = findViewById(R.id.nav_view)
+        val toggle = ActionBarDrawerToggle(
+            this, drawerLayout, toolbar,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
+        )
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        navView.setNavigationItemSelectedListener(this)
+
         dataSource.open()
         tvInfo = findViewById(R.id.tv_info)
         tvDate = findViewById(R.id.tv_date)
         dateString = dataSource.stringDate
 
-/*
-        if(::tvInfo.isInitialized)
-            Log.v("BBBBBBBBBBBBBBBBBBBBBBBBBB", "BBBBBBBBBBBBBBBBB")
-        else
-            Log.v("CCCCCCCCCCCCCCCCCCCCCCCCCC", "CCCCCCCCCCCCCCCCC")
-*/
         //strInfo += dateString.toString()
         tvDate.text = dateString
         val dateSetListener = object : DatePickerDialog.OnDateSetListener{
@@ -172,36 +173,17 @@ https://turreta.com/2017/07/07/how-to-read-xml-in-kotlin-using-dom-parser/
             }
         })
 
-        //val toolbar: Toolbar = findViewById(R.id.toolbar)
-        //setSupportActionBar(toolbar)
-
 
         if(checkAndRequestPermissions())
             Log.e("Permission Granted....","...Date: "+"11111111")
         loadTasks()
 
 
-        tvSummary = findViewById(R.id.txtSummary)
-        //val perms = arrayOf("android.permission.READ_EXTERNAL_STORAGE", "android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.READ_CALENDAR", "android.permission.WRITE_CALENDAR")
-
-        //val fab: FloatingActionButton = findViewById(R.id.fab)
-        /*fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }*/
-        //val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-        //val navView: NavigationView = findViewById(R.id.nav_view)
-        /*val toggle = ActionBarDrawerToggle(
-            this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
-        )*/
-        //drawerLayout.addDrawerListener(toggle)
-        //toggle.syncState()
-
-        //navView.setNavigationItemSelectedListener(this)
         updateDateInView()
+        tvSummary = findViewById(R.id.txtSummary)
+
     }
 
-/*
     override fun onBackPressed() {
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -210,7 +192,6 @@ https://turreta.com/2017/07/07/how-to-read-xml-in-kotlin-using-dom-parser/
             super.onBackPressed()
         }
     }
-*/
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -232,10 +213,12 @@ https://turreta.com/2017/07/07/how-to-read-xml-in-kotlin-using-dom-parser/
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_home -> {
-                // Handle the camera action
+                val i = Intent(this, check_list::class.java).apply {  }
+                startActivity(i)
             }
             R.id.nav_gallery -> {
-
+                val i = Intent(this, RTO::class.java).apply {  }
+                startActivity(i)
             }
             R.id.nav_slideshow -> {
 
@@ -254,7 +237,6 @@ https://turreta.com/2017/07/07/how-to-read-xml-in-kotlin-using-dom-parser/
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
-
     private fun updateDateInView() {
         val myFormat = "EEE-yyyyMMdd" // mention the format you need
         val sdf = SimpleDateFormat(myFormat)
@@ -301,7 +283,7 @@ https://turreta.com/2017/07/07/how-to-read-xml-in-kotlin-using-dom-parser/
         intDate = tvDate.text.substring(10,12).toInt()
 
 
-        var dayNode : Node = dayList.item(intDate-1)
+        val dayNode : Node = dayList.item(intDate-1)
         if(dayNode.nodeType===Node.ELEMENT_NODE)
         {
             val dayElement = dayNode as Element
@@ -553,14 +535,14 @@ https://turreta.com/2017/07/07/how-to-read-xml-in-kotlin-using-dom-parser/
                 }
                 else
                     dayElement.getElementsByTagName("task7").item(0).textContent="0"
-                    intCountDays++
+                intCountDays++
 
                 if(cbChecklist08.isChecked){
                     dayElement.getElementsByTagName("task8").item(0).textContent="1"
                     intCount++}
                 else
                     dayElement.getElementsByTagName("task8").item(0).textContent="0"
-                    intCountDays++
+                intCountDays++
 
                 if(cbChecklist09.isChecked){
                     dayElement.getElementsByTagName("task9").item(0).textContent="1"
@@ -574,14 +556,14 @@ https://turreta.com/2017/07/07/how-to-read-xml-in-kotlin-using-dom-parser/
                     intCount++}
                 else
                     dayElement.getElementsByTagName("task10").item(0).textContent="0"
-                    intCountDays++
+                intCountDays++
 
                 if(cbChecklist11.isChecked){
                     dayElement.getElementsByTagName("task11").item(0).textContent="1"
                     intCount++}
                 else
                     dayElement.getElementsByTagName("task11").item(0).textContent="0"
-                    intCountDays++
+                intCountDays++
 
                 if(cbChecklist12.isChecked){
                     dayElement.getElementsByTagName("task12").item(0).textContent="1"
@@ -882,12 +864,12 @@ https://turreta.com/2017/07/07/how-to-read-xml-in-kotlin-using-dom-parser/
         if (permissionRecordAudio != PackageManager.PERMISSION_GRANTED) {
             listPermissionsNeeded.add(Manifest.permission.RECORD_AUDIO)
         }
-    /*
-        if (!listPermissionsNeeded.isEmpty()) {
-            ActivityCompat.requestPermissions(this, listPermissionsNeeded.toTypedArray(), REQUEST_ID_MULTIPLE_PERMISSIONS)
-            return false
-        }
-    */
+        /*
+            if (!listPermissionsNeeded.isEmpty()) {
+                ActivityCompat.requestPermissions(this, listPermissionsNeeded.toTypedArray(), REQUEST_ID_MULTIPLE_PERMISSIONS)
+                return false
+            }
+        */
         return true
         //val perms = arrayOf("android.permission.READ_EXTERNAL_STORAGE",
         // "android.permission.WRITE_EXTERNAL_STORAGE",
@@ -896,4 +878,5 @@ https://turreta.com/2017/07/07/how-to-read-xml-in-kotlin-using-dom-parser/
         // "android.permission.WRITE_CALENDAR")
 
     }
+
 }
