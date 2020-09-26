@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment">
+
+    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" android:orientation="vertical"
+        android:layout_alignParentStart="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+        <TableLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:background="#ffffff" android:stretchColumns="*">
+            <TableRow android:background="#80ffff">
+                <TextView android:id="@+id/tv_date"
+                    android:background="#80ffff"
+                    android:textSize="30sp"
+                    android:textColor="#ff0000"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="0.2"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_span="4"
+                    android:text="Week-Year Month Date"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+            </TableRow>
+            <TableRow android:background="#000000">
+                <TextView android:background="#80ffff" android:textSize="14sp" android:id="@+id/txtSummary"
+                    android:textColor="#ff0000" android:layout_width="wrap_content" android:layout_weight="0.8"
+                    android:layout_height="50dp" android:gravity="center" android:layout_span="4"/>
+            </TableRow>
+            <TableRow android:background="#80ffff">
+                <TextView android:background="#000000" android:textSize="4dp" android:id="@+id/txtSeparator"
+                    android:textColor="#ff0000" android:layout_width="wrap_content" android:layout_weight="0.8"
+                    android:layout_height="wrap_content" android:gravity="center" android:layout_span="4"/>
+            </TableRow>
+        </TableLayout>
+        <TableLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="#000000" android:stretchColumns="*">
+            <TableRow>
+                <Button android:layout_marginRight="8dp" android:id="@+id/savebtn" android:layout_width="30dp" android:layout_height="wrap_content" android:background="@drawable/button_save" android:text="Save" />
+                <Button android:layout_marginRight="8dp" android:id="@+id/deletebtn" android:layout_width="30dp" android:layout_height="wrap_content" android:background="@drawable/button_delete" android:text="Delete"/>
+                <Button android:layout_marginRight="8dp" android:id="@+id/loadbtn" android:layout_width="30dp" android:layout_height="wrap_content" android:background="@drawable/button_deleteall" android:text="Load"/>
+                <Button android:layout_marginRight="8dp" android:id="@+id/datebtn" android:layout_width="30dp" android:layout_height="wrap_content" android:background="@drawable/button_date" android:text="Date"/>
+            </TableRow>
+        </TableLayout>
+        <TableLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="#ffffff" android:stretchColumns="*">
+            <TableRow>
+                <TextView android:layout_marginRight="8dp"/>
+            </TableRow>
+        </TableLayout>
+        <TableLayout android:layout_width="300dp" android:layout_height="wrap_content" android:background="#ffffff" android:stretchColumns="*">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/currentDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Enter the Date"
+                    android:hint="Current Date" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </TableLayout>
+        <TableLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="#ffffff" android:stretchColumns="*">
+            <TableRow>
+                <CheckBox android:id="@+id/A00" android:layout_width= "wrap_content" android:layout_height="wrap_content" android:button="@drawable/t04_selector" />
+                <CheckBox android:id="@+id/A01" android:layout_width= "wrap_content" android:layout_height="wrap_content" android:button="@drawable/t12_selector" />
+                <CheckBox android:id="@+id/A02" android:layout_width= "wrap_content" android:layout_height="wrap_content" android:button="@drawable/t16_selector" />
+                <CheckBox android:id="@+id/A03" android:layout_width= "wrap_content" android:layout_height="wrap_content" android:button="@drawable/t24_selector" />
+                <CheckBox android:id="@+id/A04" android:layout_width= "wrap_content" android:layout_height="wrap_content" android:button="@drawable/t21_selector" />
+            </TableRow>
+            <TableRow>
+                <CheckBox android:id="@+id/A05" android:layout_width= "wrap_content" android:layout_height="wrap_content" android:button="@drawable/t10_selector" />
+                <CheckBox android:id="@+id/A06" android:layout_width= "wrap_content" android:layout_height="wrap_content" android:button="@drawable/t18_selector" />
+                <CheckBox android:id="@+id/A07" android:layout_width= "wrap_content" android:layout_height="wrap_content" />
+                <CheckBox android:id="@+id/A08" android:layout_width= "wrap_content" android:layout_height="wrap_content" android:button="@drawable/t13_selector" />
+                <CheckBox android:id="@+id/A09" android:layout_width= "wrap_content" android:layout_height="wrap_content" android:button="@drawable/t09_selector"/>
+            </TableRow>
+            <TableRow>
+                <CheckBox android:id="@+id/A10" android:layout_width= "wrap_content" android:layout_height="wrap_content" android:button="@drawable/t03_selector"/>
+                <CheckBox android:id="@+id/A11" android:layout_width= "wrap_content" android:layout_height="wrap_content" android:button="@drawable/t08_selector" />
+                <CheckBox android:id="@+id/A12" android:layout_width= "wrap_content" android:layout_height="wrap_content" android:button="@drawable/t23_selector"/>
+                <CheckBox android:id="@+id/A13" android:layout_width= "wrap_content" android:layout_height="wrap_content" android:button="@drawable/t28_selector" />
+                <CheckBox android:id="@+id/A14" android:layout_width= "wrap_content" android:layout_height="wrap_content" android:button="@drawable/t17_selector"/>
+            </TableRow>
+            <TableRow>
+                <CheckBox android:id="@+id/A15" android:layout_width= "wrap_content" android:layout_height="wrap_content" android:button="@drawable/t02_selector" />
+                <CheckBox android:id="@+id/A16" android:layout_width= "wrap_content" android:layout_height="wrap_content" android:button="@drawable/t11_selector" />
+                <CheckBox android:id="@+id/A17" android:layout_width= "wrap_content" android:layout_height="wrap_content" android:button="@drawable/t09_selector"/>
+                <CheckBox android:id="@+id/A18" android:layout_width= "wrap_content" android:layout_height="wrap_content" android:button="@drawable/t03_selector"/>
+                <CheckBox android:id="@+id/A19" android:layout_width= "wrap_content" android:layout_height="wrap_content" />
+            </TableRow>
+            <TableRow>
+                <CheckBox android:id="@+id/A20" android:layout_width= "wrap_content" android:layout_height="wrap_content" android:button="@drawable/t25_selector" />
+                <CheckBox android:id="@+id/A21" android:layout_width= "wrap_content" android:layout_height="wrap_content" android:button="@drawable/t13_selector" />
+                <CheckBox android:id="@+id/A22" android:layout_width= "wrap_content" android:layout_height="wrap_content" android:button="@drawable/t21_selector" />
+                <CheckBox android:id="@+id/A23" android:layout_width= "wrap_content" android:layout_height="wrap_content" android:button="@drawable/t05_selector" />
+                <CheckBox android:id="@+id/A24" android:layout_width= "wrap_content" android:layout_height="wrap_content" android:button="@drawable/t06_selector" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
