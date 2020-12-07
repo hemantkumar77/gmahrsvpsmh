@@ -26,7 +26,8 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.kumar.hemant.traintimetable2009.MainActivity
 import com.kumar.hemant.traintimetable2009.R
 import com.kumar.hemant.traintimetable2009.ui.gallery.GalleryViewModel
-import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_check_list.*
+import kotlinx.android.synthetic.main.fragment_gallery.*
 import org.json.JSONException
 import org.json.JSONObject
 import java.math.RoundingMode
@@ -43,32 +44,6 @@ class GalleryFragment : Fragment(), View.OnClickListener {
     var buttonDate: Button? = null
     var textViewSummary: TextView? = null
     var textViewDate: TextView? = null
-    private lateinit var cbCheckList00 : CheckBox
-    private lateinit var cbCheckList01 : CheckBox
-    private lateinit var cbCheckList02 : CheckBox
-    private lateinit var cbCheckList03 : CheckBox
-    private lateinit var cbCheckList04 : CheckBox
-    private lateinit var cbCheckList05 : CheckBox
-    private lateinit var cbCheckList06 : CheckBox
-    private lateinit var cbCheckList07 : CheckBox
-    private lateinit var cbCheckList08 : CheckBox
-    private lateinit var cbCheckList09 : CheckBox
-    private lateinit var cbCheckList10 : CheckBox
-    private lateinit var cbCheckList11 : CheckBox
-    private lateinit var cbCheckList12 : CheckBox
-    private lateinit var cbCheckList13 : CheckBox
-    private lateinit var cbCheckList14 : CheckBox
-    private lateinit var cbCheckList15 : CheckBox
-    private lateinit var cbCheckList16 : CheckBox
-    private lateinit var cbCheckList17 : CheckBox
-    private lateinit var cbCheckList18 : CheckBox
-    private lateinit var cbCheckList19 : CheckBox
-    private lateinit var cbCheckList20 : CheckBox
-    private lateinit var cbCheckList21 : CheckBox
-    private lateinit var cbCheckList22 : CheckBox
-    private lateinit var cbCheckList23 : CheckBox
-    private lateinit var cbCheckList24 : CheckBox
-    private lateinit var etCurrentDate : EditText
     var tvTitle : TextView? = null
     var etStateCode : EditText? = null
     var etRTOCode : EditText? = null
@@ -131,8 +106,8 @@ class GalleryFragment : Fragment(), View.OnClickListener {
         //loading = ProgressDialog.show(this, "Loading", "please wait", false, true)
         textViewSummary!!.text = "555.  Got the RTO Details Yey..."
 
-        var strStateCode = "5555"
-        var strRTOCode = "5555"
+        var strStateCode = "MH"
+        var strRTOCode = "14"
 
         strRTOCode = etRTOCode?.text.toString()
         strStateCode = etStateCode?.text.toString()
@@ -140,7 +115,7 @@ class GalleryFragment : Fragment(), View.OnClickListener {
         Log.d("BBBBBBBBBBBBBBBBBBBBBBBBBBBB", "https://script.google.com/macros/s/AKfycbxKp0kp8Bgotjv81AgwnkROZ5MI8U19Hmq0r6GLAc36Gb_MNdA/exec?action=getItems&stateCode="+strStateCode+"&rtoCode="+strRTOCode)
         val stringRequest = StringRequest(
             Request.Method.GET,
-            "https://script.google.com/macros/s/AKfycbxKp0kp8Bgotjv81AgwnkROZ5MI8U19Hmq0r6GLAc36Gb_MNdA/exec?action=getItems&stateCode=" + strStateCode + "&rtoCode=" + strRTOCode,
+            "https://script.google.com/macros/s/AKfycbxKp0kp8Bgotjv81AgwnkROZ5MI8U19Hmq0r6GLAc36Gb_MNdA/exec?action=getRTODetails&stateCode=" + strStateCode + "&rtoCode=" + strRTOCode,
             Response.Listener { response -> parseItems(response) },
             Response.ErrorListener {
                 textViewSummary!!.text = "555.  Into Error...."
@@ -160,6 +135,7 @@ class GalleryFragment : Fragment(), View.OnClickListener {
         val list =
             ArrayList<HashMap<String, String?>>()
         textViewSummary!!.text = "666.  $jsonResponse"
+/*
         try {
             var txt01 = jsonResponse.substring(8)
             val jobj = JSONObject(txt01)
@@ -171,13 +147,15 @@ class GalleryFragment : Fragment(), View.OnClickListener {
             for (i in 0 until jarray.length()) {
                 val jo = jarray.getJSONObject(i)
                 val itemName = jo.getString("1")
+*/
 /*
                 cbCheckList01.isChecked = !(i==0 && itemName=="0")
                 cbCheckList02.isChecked = !(i==1 && itemName=="0")
                 cbCheckList03.isChecked = !(i==2 && itemName=="0")
                 cbCheckList04.isChecked = !(i==3 && itemName=="0")
                 cbCheckList05.isChecked = !(i==4 && itemName=="0")
-*/
+*//*
+
 
                 if(i==0){
                     cbCheckList00.isChecked = itemName=="1"                }
@@ -252,6 +230,7 @@ class GalleryFragment : Fragment(), View.OnClickListener {
         } catch (e: JSONException) {
             e.printStackTrace()
         }
+*/
 
 /*
         adapter = SimpleAdapter(
@@ -266,7 +245,7 @@ class GalleryFragment : Fragment(), View.OnClickListener {
         //loading!!.dismiss()
     }
 
-    private fun updateTaskToSheet() {
+    /*private fun updateTaskToSheet() {
         //val loading = ProgressDialog.show(requireActivity().applicationContext, "Adding Item", "Please wait")
 
 
@@ -447,7 +426,7 @@ class GalleryFragment : Fragment(), View.OnClickListener {
         }
         textViewSummary!!.text = "444. " + dateNumber + "-"+ monthNumber
 
-    }
+    }*/
 
     interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
@@ -456,7 +435,7 @@ class GalleryFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View) {
         if (v === buttonSaveTask) {
-            updateTaskToSheet()
+            //updateTaskToSheet()
 
             //Define what to do when button is clicked
         }
