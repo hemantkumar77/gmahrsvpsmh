@@ -1,4 +1,4 @@
-package com.kumar.hemant.traintimetable2009.ui.slideshow
+package com.kumar.hemant.traintimetable2009.ui.rto
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -14,6 +14,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import kotlinx.android.synthetic.main.fragment_rto.*
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
@@ -25,26 +26,25 @@ import com.android.volley.*
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.kumar.hemant.traintimetable2009.R
-import kotlinx.android.synthetic.main.fragment_slideshow.*
 import java.lang.Double.parseDouble
 import java.lang.NumberFormatException
 import java.util.*
 
-class SlideshowFragment : Fragment(), View.OnClickListener {
+class RtoFragment : Fragment(), View.OnClickListener {
 
-    private lateinit var slideshowViewModel: SlideshowViewModel
+    private lateinit var rtoViewModel: RtoViewModel
     var tvTitle : TextView? = null
     var etStateCode : EditText? = null
-    var etRTOCode : EditText? = null
-    var etSearchRTOCode : EditText? = null
+    var etRtoCode : EditText? = null
+    var etSearchRtoCode : EditText? = null
     var tvSpeak : TextView? = null
     var tvSummary : TextView? = null
-    var etSpokenRTOCode : EditText? = null
+    var etSpokenRtoCode : EditText? = null
     var btDetail : Button? = null
-    var btRTOList : Button? = null
-    var btSpokenRTOCode : Button? = null
-    var btReadRTOCode : Button? = null
-    var btStopReadRTOCode : Button? = null
+    var btRtoList : Button? = null
+    var btSpokenRtoCode : Button? = null
+    var btReadRtoCode : Button? = null
+    var btStopReadRtoCode : Button? = null
     lateinit var mTTS: TextToSpeech
 
     override fun onCreateView(
@@ -52,29 +52,25 @@ class SlideshowFragment : Fragment(), View.OnClickListener {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        slideshowViewModel =
-                ViewModelProviders.of(this).get(SlideshowViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_slideshow, container, false)
+        rtoViewModel = ViewModelProviders.of(this).get(RtoViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_rto, container, false)
         tvTitle = root.findViewById(R.id.txtTitle) as TextView
         etStateCode = root.findViewById(R.id.textInputEditTextStateCode) as EditText
-        etRTOCode = root.findViewById(R.id.textInputEditTextRTOCode) as EditText
-        etSearchRTOCode = root.findViewById(R.id.textInputEditTextSearchRTOCode) as EditText
+        etRtoCode = root.findViewById(R.id.textInputEditTextRtoCode) as EditText
+        etSearchRtoCode = root.findViewById(R.id.textInputEditTextSearchRtoCode) as EditText
         tvSpeak = root.findViewById(R.id.tvSpeak) as TextView
         tvSummary = root.findViewById(R.id.tvSummary) as TextView
         btDetail = root.findViewById<View>(R.id.btDetail) as Button
         btDetail!!.setOnClickListener(this)
-        btRTOList = root.findViewById<View>(R.id.btRTOList) as Button
-        btRTOList!!.setOnClickListener(this)
-        btSpokenRTOCode = root.findViewById<View>(R.id.btSpokenRTOCode) as Button
-        btSpokenRTOCode!!.setOnClickListener(this)
-        btReadRTOCode = root.findViewById<View>(R.id.btReadRTOCode) as Button
-        btReadRTOCode!!.setOnClickListener(this)
-        btStopReadRTOCode = root.findViewById<View>(R.id.btReadRTOCode) as Button
-        btStopReadRTOCode!!.setOnClickListener(this)
-        slideshowViewModel.text.observe(viewLifecycleOwner, Observer {
-            tvTitle!!.text = it
-        })
-
+        btRtoList = root.findViewById<View>(R.id.btRtoList) as Button
+        btRtoList!!.setOnClickListener(this)
+        btSpokenRtoCode = root.findViewById<View>(R.id.btSpokenRtoCode) as Button
+        btSpokenRtoCode!!.setOnClickListener(this)
+        btReadRtoCode = root.findViewById<View>(R.id.btReadRtoCode) as Button
+        btReadRtoCode!!.setOnClickListener(this)
+        btStopReadRtoCode = root.findViewById<View>(R.id.btReadRtoCode) as Button
+        btStopReadRtoCode!!.setOnClickListener(this)
+        rtoViewModel.text.observe(viewLifecycleOwner, Observer { tvTitle!!.text = it })
 
         mTTS = TextToSpeech(requireActivity().applicationContext, TextToSpeech.OnInitListener { status ->
             if (status != TextToSpeech.ERROR){
@@ -87,7 +83,7 @@ class SlideshowFragment : Fragment(), View.OnClickListener {
 
             override fun afterTextChanged(s: Editable) {
                 if(etStateCode!!.text.length==2){
-                    etRTOCode!!.requestFocus()
+                    etRtoCode!!.requestFocus()
                 }
             }
 
@@ -101,21 +97,21 @@ class SlideshowFragment : Fragment(), View.OnClickListener {
         })
 
         //loadData()
-        //showAllRTO()
+        //showAllRto()
         startSpeechToText()
         return root
     }
 
     private fun loadData(){
         //loading = ProgressDialog.show(this, "Loading", "please wait", false, true)
-        tvSummary!!.text = "555.  Got the RTO Details Yey..."
+        tvSummary!!.text = "555.  Got the Rto Details Yey..."
 
 
-        var strRTOCode = etRTOCode?.text.toString()
+        var strRtoCode = etRtoCode?.text.toString()
         var strStateCode = etStateCode?.text.toString()
         val stringRequest = StringRequest(
             Request.Method.GET,
-            "https://script.google.com/macros/s/AKfycbxKp0kp8Bgotjv81AgwnkROZ5MI8U19Hmq0r6GLAc36Gb_MNdA/exec?action=getRTODetails&stateCode=" + strStateCode + "&rtoCode=" + strRTOCode,
+            "https://script.google.com/macros/s/AKfycbxKp0kp8Bgotjv81AgwnkROZ5MI8U19Hmq0r6GLAc36Gb_MNdA/exec?action=getRtoDetails&stateCode=" + strStateCode + "&rtoCode=" + strRtoCode,
             Response.Listener { response -> parseItems(response) },
             Response.ErrorListener {
                 tvSummary!!.text = "777.  Into Error...."
@@ -131,14 +127,14 @@ class SlideshowFragment : Fragment(), View.OnClickListener {
         queue.add(stringRequest)
     }
 
-    private fun showRTOList(){
+    private fun showRtoList(){
         //loading = ProgressDialog.show(this, "Loading", "please wait", false, true)
-        tvSummary!!.text = "555.  Got the RTO Details Yey..."
+        tvSummary!!.text = "555.  Got the Rto Details Yey..."
 
-        var strRTOText = etSearchRTOCode?.text.toString()
+        var strRtoText = etSearchRtoCode?.text.toString()
         val stringRequest = StringRequest(
             Request.Method.GET,
-            "https://script.google.com/macros/s/AKfycbxKp0kp8Bgotjv81AgwnkROZ5MI8U19Hmq0r6GLAc36Gb_MNdA/exec?action=getRTOList&rtoText=" + strRTOText,
+            "https://script.google.com/macros/s/AKfycbxKp0kp8Bgotjv81AgwnkROZ5MI8U19Hmq0r6GLAc36Gb_MNdA/exec?action=getRtoList&rtoText=" + strRtoText,
             Response.Listener { response -> parseItems(response) },
             Response.ErrorListener {
                 tvSummary!!.text = "555.  Into Error...."
@@ -154,12 +150,12 @@ class SlideshowFragment : Fragment(), View.OnClickListener {
         queue.add(stringRequest)
     }
 
-    private fun showSpokenRTO(){
+    private fun showSpokenRto(){
         //loading = ProgressDialog.show(this, "Loading", "please wait", false, true)
-        tvSummary!!.text = "555.  Got the RTO Details Yey..."
+        tvSummary!!.text = "555.  Got the Rto Details Yey..."
 
         var strSpeakText = tvSpeak?.text.toString()
-        var strRTOCode = ""
+        var strRtoCode = ""
         var strStateCode = ""
         if(strSpeakText.length == 5) {
             tvSummary!!.text = "999...  The text is ... " + strSpeakText.substring(3..4)
@@ -172,7 +168,7 @@ class SlideshowFragment : Fragment(), View.OnClickListener {
             }
             if(numeric){
                 if (strSpeakText.substring(3..4).toInt() < 100) {
-                    strRTOCode = tvSpeak?.text.toString().substring(3..4)
+                    strRtoCode = tvSpeak?.text.toString().substring(3..4)
                     strStateCode = tvSpeak?.text.toString().substring(0..1)
                 }
             }
@@ -188,7 +184,7 @@ class SlideshowFragment : Fragment(), View.OnClickListener {
             }
             if(numeric){
                 if (strSpeakText.substring(2..3).toInt() < 100) {
-                    strRTOCode = tvSpeak?.text.toString().substring(2..3)
+                    strRtoCode = tvSpeak?.text.toString().substring(2..3)
                     strStateCode = tvSpeak?.text.toString().substring(0..1)
                 }
             }
@@ -204,7 +200,7 @@ class SlideshowFragment : Fragment(), View.OnClickListener {
             }
             if(numeric){
                 if (strSpeakText.substring(2..2).toInt() < 100) {
-                    strRTOCode = tvSpeak?.text.toString().substring(2..2)
+                    strRtoCode = tvSpeak?.text.toString().substring(2..2)
                     strStateCode = tvSpeak?.text.toString().substring(0..1)
                 }
             }
@@ -216,7 +212,7 @@ class SlideshowFragment : Fragment(), View.OnClickListener {
         }
         val stringRequest = StringRequest(
             Request.Method.GET,
-            "https://script.google.com/macros/s/AKfycbxKp0kp8Bgotjv81AgwnkROZ5MI8U19Hmq0r6GLAc36Gb_MNdA/exec?action=getRTODetails&stateCode=" + strStateCode + "&rtoCode=" + strRTOCode,
+            "https://script.google.com/macros/s/AKfycbxKp0kp8Bgotjv81AgwnkROZ5MI8U19Hmq0r6GLAc36Gb_MNdA/exec?action=getRtoDetails&stateCode=" + strStateCode + "&rtoCode=" + strRtoCode,
             Response.Listener { response -> parseItems(response) },
             Response.ErrorListener {
                 tvSummary!!.text = "777.  Into Error...."
@@ -256,7 +252,7 @@ class SlideshowFragment : Fragment(), View.OnClickListener {
 
         tvSummary?.setMovementMethod(ScrollingMovementMethod())
         tvSummary!!.text = "" + rtoList
-        readRTO()
+        readRto()
 
         //loading!!.dismiss()
     }
@@ -288,13 +284,13 @@ class SlideshowFragment : Fragment(), View.OnClickListener {
                 val matches = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
                 if(matches!=null)
                     tvSpeak!!.text = "" + matches[0]
-                    showSpokenRTO()
+                    showSpokenRto()
             }
 
             override fun onPartialResults(partialResults: Bundle) {tvSummary!!.text = "Partial Results..."}
             override fun onEvent(i: Int, bundle: Bundle) {tvSummary!!.text = "Event..." + i}
         })
-        btSpokenRTOCode!!.setOnTouchListener(View.OnTouchListener{view,motionEvent ->
+        btSpokenRtoCode!!.setOnTouchListener(View.OnTouchListener{view,motionEvent ->
             when (motionEvent.action){
                 MotionEvent.ACTION_UP -> {
                     speechRecognizer.stopListening()
@@ -328,12 +324,12 @@ class SlideshowFragment : Fragment(), View.OnClickListener {
         return errorMessage
     }
 
-    private fun readRTO(){
+    private fun readRto(){
         val toSpeak = tvSummary!!.text.toString()
         mTTS.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null)
     }
 
-    private fun stopReadRTO(){
+    private fun stopReadRto(){
         if(mTTS.isSpeaking)
             mTTS.stop()
     }
@@ -345,17 +341,17 @@ class SlideshowFragment : Fragment(), View.OnClickListener {
             //updateTaskToSheet()
             loadData()
         }
-        if (v === btRTOList) {
-            showRTOList()
+        if (v === btRtoList) {
+            showRtoList()
         }
-        if (v === btSpokenRTOCode) {
-            showSpokenRTO()
+        if (v === btSpokenRtoCode) {
+            showSpokenRto()
         }
-        if (v === btReadRTOCode) {
-            readRTO()
+        if (v === btReadRtoCode) {
+            readRto()
         }
-        if (v === btStopReadRTOCode) {
-            stopReadRTO()
+        if (v === btStopReadRtoCode) {
+            stopReadRto()
         }
     }
 

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.gallery.GalleryFragment">
+    tools:context=".ui.timer.TimerFragment">
 
     <TextView
-        android:id="@+id/text_gallery"
+        android:id="@+id/text_timer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -15,125 +16,134 @@
         android:layout_marginEnd="8dp"
         android:textAlignment="center"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <TextView
-        android:layout_width="355dp"
+        android:layout_width="350dp"
         android:layout_height="41dp"
         android:id="@+id/txtTitle"
-        android:textSize="30dp"
+        android:textSize="35sp"
         android:text="Timer"
         android:textStyle="bold"
         android:textColor="#000000"
+        android:layout_marginTop="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" app:layout_constraintHorizontal_bias="0.385"
-        app:layout_constraintVertical_bias="0.001"/>
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/currentDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Enter the Date"
-        android:hint="Current Date" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <EditText
-        android:layout_width="381dp"
-        android:layout_height="53dp"
-        android:inputType="textPersonName"
-        android:id="@+id/etRTOState"
-        android:hint="State Code / RTO Name"
-        android:ems="10"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintHorizontal_bias="0.385"
-        app:layout_constraintVertical_bias="0.093"
-        android:layout_marginStart="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginEnd="8dp"
-        />
-    <EditText
-        android:layout_width="150dp"
-        android:layout_height="48dp"
-        android:inputType="textCapCharacters"
-        android:id="@+id/etRTOCode"
-        android:hint="RTO Code"
-        android:ems="10"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.817"
-        app:layout_constraintVertical_bias="0.093"
-        app:layout_constraintTop_toBottomOf="@+id/etRTOState"
-        />
-    <Button
-        android:text="Get RTO"
-        android:layout_width="148dp"
-        android:layout_height="44dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        android:background="@drawable/button_save"
-        android:id="@+id/btDetail" android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" android:layout_marginBottom="452dp"/>
-
-    <EditText
-        android:layout_width="150dp"
-        android:layout_height="49dp"
-        android:inputType="textPersonName"
-        android:id="@+id/rtoSpeech"
-        android:hint="State Code / RTO Name"
-        android:ems="10"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btDetail"
-        app:layout_constraintHorizontal_bias="0.106"
-        app:layout_constraintVertical_bias="0.024"
-        android:layout_marginStart="16dp" app:layout_constraintStart_toStartOf="parent"/>
-
-    <Button
-        android:text="Speak"
-        android:layout_width="148dp"
-        android:layout_height="44dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rtoSpeech"
-        app:layout_constraintHorizontal_bias="0.969"
-        android:background="@drawable/button_save"
-        app:layout_constraintVertical_bias="0.0"
-        android:id="@+id/btnSpeech" android:layout_marginBottom="396dp"/>
+        app:layout_constraintVertical_bias="0.001"/>
 
     <TextView
-        android:layout_width="387dp"
-        android:layout_height="383dp"
-        android:id="@+id/tvSummary"
-        android:textSize="30dp"
-        android:text="Summary"
+        android:id="@+id/tvTimeInterval"
+        android:layout_width="220dp"
+        android:layout_height="41dp"
+        android:textSize="30sp"
+        android:text="Time Interval: "
         android:textStyle="bold"
         android:textColor="#000000"
+        android:layout_marginTop="30dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintVertical_bias="0.001"
+        app:layout_constraintTop_toBottomOf="@id/txtTitle"
+        tools:ignore="MissingConstraints" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutSearchRtoCode"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintLeft_toRightOf="@id/tvTimeInterval"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="0.001"
+        app:layout_constraintTop_toBottomOf="@id/txtTitle"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEditTextTimer"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:hint="Enter Time Interval" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tvTimerText"
+        android:layout_width="220dp"
+        android:layout_height="41dp"
+        android:textSize="30dp"
+        android:text="Timer: "
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_marginTop="30dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintVertical_bias="0.001"
+        app:layout_constraintTop_toBottomOf="@id/tvTimeInterval"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/txtTimer"
+        android:layout_width="150dp"
+        android:layout_height="41dp"
+        android:text="0"
+        android:textColor="#000000"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutSearchRtoCode"
+        app:layout_constraintLeft_toRightOf="@id/tvTimerText"
+        tools:ignore="MissingConstraints" />
+    <Button
+        android:text="@string/start"
+        android:layout_width="148dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintHorizontal_bias="0.1"
+        android:background="@drawable/button_green"
+        android:id="@+id/btnStartTimer"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTimer"
+        />
+
+    <Button
+        android:text="Resume"
+        android:layout_marginTop="8dp"
+        android:layout_width="148dp"
+        android:layout_height="44dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" app:layout_constraintHorizontal_bias="0.164"
-        app:layout_constraintVertical_bias="1.0"/>
+        app:layout_constraintHorizontal_bias="0.969"
+        android:background="@drawable/button_blue"
+        app:layout_constraintVertical_bias="0.0"
+        android:id="@+id/btnResume"
+        android:layout_marginBottom="396dp"
+        app:layout_constraintTop_toBottomOf="@+id/txtTimer"
+        />
+    <Chronometer
+        android:id="@+id/c_meter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="256dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="28dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#092FEC"
+        android:textSize="36sp"
+        app:layout_constraintTop_toBottomOf="@+id/btnResume"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

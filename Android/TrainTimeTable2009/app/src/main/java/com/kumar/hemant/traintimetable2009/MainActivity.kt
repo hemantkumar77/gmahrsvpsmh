@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -19,17 +18,17 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
-import com.kumar.hemant.traintimetable2009.ui.gallery.GalleryFragment
-import com.kumar.hemant.traintimetable2009.ui.home.HomeFragment
-import com.kumar.hemant.traintimetable2009.ui.slideshow.SlideshowFragment
+import com.kumar.hemant.traintimetable2009.ui.timer.TimerFragment
+import com.kumar.hemant.traintimetable2009.ui.check_list.CheckListFragment
+import com.kumar.hemant.traintimetable2009.ui.rto.RtoFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    lateinit var homeFragment: HomeFragment
-    lateinit var galleryFragment: GalleryFragment
-    lateinit var slideshowFragment: SlideshowFragment
+    lateinit var checkListFragment: CheckListFragment
+    lateinit var timerFragment: TimerFragment
+    lateinit var RtoFragment: RtoFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,11 +46,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow), drawerLayout)
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.nav_check_list, R.id.nav_timer, R.id.nav_rto), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        homeFragment = HomeFragment()
+        checkListFragment = CheckListFragment()
+        supportFragmentManager
+            .beginTransaction()
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            .commit()
+        timerFragment = TimerFragment()
+        supportFragmentManager
+            .beginTransaction()
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            .commit()
+        checkListFragment = CheckListFragment()
         supportFragmentManager
             .beginTransaction()
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
@@ -72,28 +81,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
         when(item.itemId){
-            R.id.nav_home -> {
-                homeFragment = HomeFragment()
+            R.id.nav_check_list -> {
+                checkListFragment = CheckListFragment()
                 supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.nav_view, homeFragment)
+                    .replace(R.id.nav_view, checkListFragment)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit()
             }
-            R.id.nav_gallery -> {
-/*
-                galleryFragment = galleryFragment
-                supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.nav_view, galleryFragment)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .commit()
-*/
+            R.id.nav_timer -> {
+
                 val myToast = Toast.makeText(applicationContext,"toast message with gravity",Toast.LENGTH_SHORT)
                 myToast.setGravity(Gravity.LEFT,200,200)
                 myToast.show()
             }
-            R.id.nav_slideshow -> {
+            R.id.nav_rto -> {
             }
         }
         drawer_layout.closeDrawer(GravityCompat.START)
