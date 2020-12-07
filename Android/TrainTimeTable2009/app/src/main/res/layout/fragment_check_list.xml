@@ -40,10 +40,10 @@
         </TableLayout>
         <TableLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="#000000" android:stretchColumns="*">
             <TableRow>
-                <Button android:layout_marginRight="8dp" android:id="@+id/savebtn" android:layout_width="30dp" android:layout_height="wrap_content" android:background="@drawable/button_save" android:text="Save" />
-                <Button android:layout_marginRight="8dp" android:id="@+id/deletebtn" android:layout_width="30dp" android:layout_height="wrap_content" android:background="@drawable/button_delete" android:text="Delete"/>
-                <Button android:layout_marginRight="8dp" android:id="@+id/loadbtn" android:layout_width="30dp" android:layout_height="wrap_content" android:background="@drawable/button_deleteall" android:text="Load"/>
-                <Button android:layout_marginRight="8dp" android:id="@+id/datebtn" android:layout_width="30dp" android:layout_height="wrap_content" android:background="@drawable/button_date" android:text="Date"/>
+                <Button android:layout_marginRight="8dp" android:id="@+id/savebtn" android:layout_width="30dp" android:layout_height="wrap_content" android:background="@drawable/button_green" android:text="Save" />
+                <Button android:layout_marginRight="8dp" android:id="@+id/deletebtn" android:layout_width="30dp" android:layout_height="wrap_content" android:background="@drawable/button_orange" android:text="Delete"/>
+                <Button android:layout_marginRight="8dp" android:id="@+id/loadbtn" android:layout_width="30dp" android:layout_height="wrap_content" android:background="@drawable/button_red" android:text="Load"/>
+                <Button android:layout_marginRight="8dp" android:id="@+id/datebtn" android:layout_width="30dp" android:layout_height="wrap_content" android:background="@drawable/button_blue" android:text="Date"/>
             </TableRow>
         </TableLayout>
         <TableLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="#ffffff" android:stretchColumns="*">
