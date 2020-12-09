@@ -14,7 +14,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import kotlinx.android.synthetic.main.fragment_rto.*
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
@@ -48,9 +47,9 @@ class RtoFragment : Fragment(), View.OnClickListener {
     lateinit var mTTS: TextToSpeech
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         rtoViewModel = ViewModelProviders.of(this).get(RtoViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_rto, container, false)
@@ -107,11 +106,13 @@ class RtoFragment : Fragment(), View.OnClickListener {
         tvSummary!!.text = "555.  Got the Rto Details Yey..."
 
 
-        var strRtoCode = etRtoCode?.text.toString()
-        var strStateCode = etStateCode?.text.toString()
+        var strRtoCode = etRtoCode!!.text.toString()
+        var strStateCode = etStateCode!!.text.toString()
+        tvSummary!!.text = "https://script.google.com/macros/s/AKfycbxKp0kp8Bgotjv81AgwnkROZ5MI8U19Hmq0r6GLAc36Gb_MNdA/exec?action=getRtoDetails&stateCode=" + strStateCode + "&rtoCode=" + strRtoCode
+
         val stringRequest = StringRequest(
             Request.Method.GET,
-            "https://script.google.com/macros/s/AKfycbxKp0kp8Bgotjv81AgwnkROZ5MI8U19Hmq0r6GLAc36Gb_MNdA/exec?action=getRtoDetails&stateCode=" + strStateCode + "&rtoCode=" + strRtoCode,
+            tvSummary!!.text.toString(),
             Response.Listener { response -> parseItems(response) },
             Response.ErrorListener {
                 tvSummary!!.text = "777.  Into Error...."
@@ -284,7 +285,7 @@ class RtoFragment : Fragment(), View.OnClickListener {
                 val matches = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
                 if(matches!=null)
                     tvSpeak!!.text = "" + matches[0]
-                    showSpokenRto()
+                showSpokenRto()
             }
 
             override fun onPartialResults(partialResults: Bundle) {tvSummary!!.text = "Partial Results..."}
