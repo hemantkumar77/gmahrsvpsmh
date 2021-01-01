@@ -16,5 +16,9 @@
             android:id="@+id/nav_rto"
             android:icon="@drawable/ic_menu_rto"
             android:title="@string/menu_rto" />
+        <item
+            android:id="@+id/nav_train"
+            android:icon="@drawable/ic_menu_rto"
+            android:title="@string/menu_train" />
     </group>
 </menu>

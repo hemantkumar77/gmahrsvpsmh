@@ -18,17 +18,19 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
-import com.kumar.hemant.traintimetable2009.ui.timer.TimerFragment
 import com.kumar.hemant.traintimetable2009.ui.check_list.CheckListFragment
 import com.kumar.hemant.traintimetable2009.ui.rto.RtoFragment
+import com.kumar.hemant.traintimetable2009.ui.timer.TimerFragment
+import com.kumar.hemant.traintimetable2009.ui.train.TrainFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     lateinit var checkListFragment: CheckListFragment
-    lateinit var timerFragment: TimerFragment
     lateinit var RtoFragment: RtoFragment
+    lateinit var timerFragment: TimerFragment
+    lateinit var trainFragment: TrainFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,11 +48,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.nav_check_list, R.id.nav_timer, R.id.nav_rto), drawerLayout)
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.nav_check_list, R.id.nav_rto, R.id.nav_timer, R.id.nav_train), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
         checkListFragment = CheckListFragment()
+        supportFragmentManager
+            .beginTransaction()
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            .commit()
+        RtoFragment = RtoFragment()
         supportFragmentManager
             .beginTransaction()
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
@@ -60,7 +67,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             .beginTransaction()
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .commit()
-        RtoFragment = RtoFragment()
+        trainFragment = TrainFragment()
         supportFragmentManager
             .beginTransaction()
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
@@ -89,13 +96,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit()
             }
+            R.id.nav_rto -> {
+            }
             R.id.nav_timer -> {
 
                 val myToast = Toast.makeText(applicationContext,"toast message with gravity",Toast.LENGTH_SHORT)
                 myToast.setGravity(Gravity.LEFT,200,200)
                 myToast.show()
             }
-            R.id.nav_rto -> {
+            R.id.nav_train -> {
+
+                val myToast = Toast.makeText(applicationContext,"toast message with gravity",Toast.LENGTH_SHORT)
+                myToast.setGravity(Gravity.LEFT,200,200)
+                myToast.show()
             }
         }
         drawer_layout.closeDrawer(GravityCompat.START)

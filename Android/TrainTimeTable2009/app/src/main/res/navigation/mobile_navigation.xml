@@ -9,16 +9,19 @@
         android:name="com.kumar.hemant.traintimetable2009.ui.check_list.CheckListFragment"
         android:label="@string/menu_check_list"
         tools:layout="@layout/fragment_check_list" />
-
-    <fragment
-        android:id="@+id/nav_timer"
-        android:name="com.kumar.hemant.traintimetable2009.ui.timer.TimerFragment"
-        android:label="@string/menu_timer"
-        tools:layout="@layout/fragment_timer" />
-
     <fragment
         android:id="@+id/nav_rto"
         android:name="com.kumar.hemant.traintimetable2009.ui.rto.RtoFragment"
         android:label="@string/menu_rto"
         tools:layout="@layout/fragment_rto" />
+    <fragment
+        android:id="@+id/nav_timer"
+        android:name="com.kumar.hemant.traintimetable2009.ui.timer.TimerFragment"
+        android:label="@string/menu_timer"
+        tools:layout="@layout/fragment_timer" />
+    <fragment
+        android:id="@+id/nav_train"
+        android:name="com.kumar.hemant.traintimetable2009.ui.train.TrainFragment"
+        android:label="@string/menu_train"
+        tools:layout="@layout/fragment_train" />
 </navigation>

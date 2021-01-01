@@ -1,30 +1,15 @@
 package com.kumar.hemant.traintimetable2009.ui.timer
 
-import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
-import android.text.method.ScrollingMovementMethod
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import android.speech.RecognitionListener
-import android.speech.RecognizerIntent
-import android.speech.SpeechRecognizer
 import android.speech.tts.TextToSpeech
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.MotionEvent
-import com.android.volley.*
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import com.kumar.hemant.traintimetable2009.R
-import kotlinx.android.synthetic.main.fragment_rto.*
-import java.lang.Double.parseDouble
-import java.lang.NumberFormatException
 import java.util.*
 import android.media.MediaPlayer
 import android.os.Handler
@@ -32,7 +17,6 @@ import android.os.Looper
 import android.os.SystemClock
 import android.widget.*
 import kotlinx.android.synthetic.main.fragment_timer.*
-import kotlinx.android.synthetic.*
 
 class TimerFragment : Fragment(), View.OnClickListener {
     //https://medium.com/@dairdr/kotlin-playing-audio-file-3eeaca0d3cb1

@@ -2,6 +2,7 @@ package com.kumar.hemant.traintimetable2009.ui.check_list
 
 //import android.support.annotation.Nullable
 //import android.support.v7.app.AppCompatActivity
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -176,7 +177,7 @@ class CheckListFragment : Fragment(), View.OnClickListener {
         Log.d("BBBBBBBBBBBBBBBBBBBBBBBBBBBB", "https://script.google.com/macros/s/AKfycbxKp0kp8Bgotjv81AgwnkROZ5MI8U19Hmq0r6GLAc36Gb_MNdA/exec?action=getItems&dateNumber="+dateNumber+"&monthNumber="+monthNumber)
         val stringRequest = StringRequest(
             Request.Method.GET,
-            "https://script.google.com/macros/s/AKfycbxKp0kp8Bgotjv81AgwnkROZ5MI8U19Hmq0r6GLAc36Gb_MNdA/exec?action=getItems&dateNumber=" + dateNumber + "&monthNumber=" + monthNumber,
+            "https://script.google.com/macros/s/AKfycbyzLKkNoicthE1x2ACgnJVOyUunDGQDYJpA7i5nkDAGqogV3Z15/exec?action=getItems&dateNumber=" + dateNumber + "&monthNumber=" + monthNumber,
             Response.Listener { response -> parseItems(response, dateNumber) },
             Response.ErrorListener {
                 textViewSummary!!.text = "555.  Into Error...."
@@ -192,120 +193,47 @@ class CheckListFragment : Fragment(), View.OnClickListener {
         queue.add(stringRequest)
     }
 
+    @SuppressLint("SetTextI18n")
     private fun parseItems(jsonResponse: String, dateNumber: String) {
-        val list =
-            ArrayList<HashMap<String, String?>>()
-        textViewSummary!!.text = "666.  $jsonResponse"
-        try {
-            var txt01 = jsonResponse.substring(8)
-            val jobj = JSONObject(txt01)
-            val jarray = jobj.getJSONArray("items")
-            //val monthName = "June"
+        val list = ArrayList<HashMap<String, String?>>()
+        val parts01 = jsonResponse.split(",")
+        val strTask01 = parts01[0]
+        val strDailyCount = parts01[1]
+        val strMonthlyCount = parts01[2]
+        textViewSummary!!.text = "666.  $strTask01, $strDailyCount, $strMonthlyCount"
 
-            var str02 = "001"
-
-            for (i in 0 until jarray.length()) {
-                val jo = jarray.getJSONObject(i)
-                val itemName = jo.getString(dateNumber)
-/*
-                cbCheckList01.isChecked = !(i==0 && itemName=="0")
-                cbCheckList02.isChecked = !(i==1 && itemName=="0")
-                cbCheckList03.isChecked = !(i==2 && itemName=="0")
-                cbCheckList04.isChecked = !(i==3 && itemName=="0")
-                cbCheckList05.isChecked = !(i==4 && itemName=="0")
-*/
-
-                if(i==0){
-                    cbCheckList00.isChecked = itemName=="1"                }
-                if(i==1){
-                    cbCheckList01.isChecked = itemName=="1"                }
-                if(i==2){
-                    cbCheckList02.isChecked = itemName=="1"                }
-                if(i==3){
-                    cbCheckList03.isChecked = itemName=="1"                }
-                if(i==4){
-                    cbCheckList04.isChecked = itemName=="1"                }
-                if(i==5){
-                    cbCheckList05.isChecked = itemName=="1"                }
-                if(i==6){
-                    cbCheckList06.isChecked = itemName=="1"                }
-                if(i==7){
-                    cbCheckList07.isChecked = itemName=="1"                }
-                if(i==8){
-                    cbCheckList08.isChecked = itemName=="1"                }
-                if(i==9){
-                    cbCheckList09.isChecked = itemName=="1"                }
-                if(i==10){
-                    cbCheckList10.isChecked = itemName=="1"                }
-                if(i==11){
-                    cbCheckList11.isChecked = itemName=="1"                }
-                if(i==12){
-                    cbCheckList12.isChecked = itemName=="1"                }
-                if(i==13){
-                    cbCheckList13.isChecked = itemName=="1"                }
-                if(i==14){
-                    cbCheckList14.isChecked = itemName=="1"                }
-                if(i==15){
-                    cbCheckList15.isChecked = itemName=="1"                }
-                if(i==16){
-                    cbCheckList16.isChecked = itemName=="1"                }
-                if(i==17){
-                    cbCheckList17.isChecked = itemName=="1"                }
-                if(i==18){
-                    cbCheckList18.isChecked = itemName=="1"                }
-                if(i==19){
-                    cbCheckList19.isChecked = itemName=="1"                }
-                if(i==20){
-                    cbCheckList20.isChecked = itemName=="1"                }
-                if(i==21){
-                    cbCheckList21.isChecked = itemName=="1"                }
-                if(i==22){
-                    cbCheckList22.isChecked = itemName=="1"                }
-                if(i==23){
-                    cbCheckList23.isChecked = itemName=="1"                }
-                if(i==24){
-                    cbCheckList24.isChecked = itemName=="1"                }
-                //val brand = jo.getString("brand")
-                //val price = jo.getString("price")
-                var str01 = jsonResponse.subSequence(5,8)
-                var str02 = str01.toString()
-                val df = DecimalFormat("#.##")
-                df.roundingMode = RoundingMode.CEILING
-                // println(df.format(num))
-                var totalPercentage = df.format ((str02.toFloat() / (dateNumber.toFloat() * 25.0)) * 100.0)
-                textViewSummary!!.text="Today: " + jsonResponse.substring(2,4) +" of 25. \nTotal: "+jsonResponse.subSequence(5,8) + " of " + (dateNumber.toInt() * 25) + " ("+totalPercentage + " %)"
-
-                val item =
-                    HashMap<String, String?>()
-                //item["itemName"] = itemName
-                item["7"] = itemName
-                //item["brand"] = brand
-                //item["price"] = price
-                list.add(item)
-            }
-            //editTextItemName!!.text = "abcd"
-            //textViewSummary!!.text="abcd"
-        } catch (e: JSONException) {
-            e.printStackTrace()
-        }
-
-/*
-        adapter = SimpleAdapter(
-            this,
-            list,
-            R.layout.list_item_row,
-            arrayOf("itemName"),
-            intArrayOf(R.id.tv_item_name)
-        )
-        listView!!.adapter = adapter
-*/
-        //loading!!.dismiss()
+        cbCheckList00.isChecked = strTask01[0].toString() == "1"
+        cbCheckList01.isChecked = strTask01[1].toString() == "1"
+        cbCheckList02.isChecked = strTask01[2].toString() == "1"
+        cbCheckList03.isChecked = strTask01[3].toString() == "1"
+        cbCheckList04.isChecked = strTask01[4].toString() == "1"
+        cbCheckList05.isChecked = strTask01[5].toString() == "1"
+        cbCheckList06.isChecked = strTask01[6].toString() == "1"
+        cbCheckList07.isChecked = strTask01[7].toString() == "1"
+        cbCheckList08.isChecked = strTask01[8].toString() == "1"
+        cbCheckList09.isChecked = strTask01[9].toString() == "1"
+        cbCheckList10.isChecked = strTask01[10].toString() == "1"
+        cbCheckList11.isChecked = strTask01[11].toString() == "1"
+        cbCheckList12.isChecked = strTask01[12].toString() == "1"
+        cbCheckList13.isChecked = strTask01[13].toString() == "1"
+        cbCheckList14.isChecked = strTask01[14].toString() == "1"
+        cbCheckList15.isChecked = strTask01[15].toString() == "1"
+        cbCheckList16.isChecked = strTask01[16].toString() == "1"
+        cbCheckList17.isChecked = strTask01[17].toString() == "1"
+        cbCheckList18.isChecked = strTask01[18].toString() == "1"
+        cbCheckList19.isChecked = strTask01[19].toString() == "1"
+        cbCheckList20.isChecked = strTask01[20].toString() == "1"
+        cbCheckList21.isChecked = strTask01[21].toString() == "1"
+        cbCheckList22.isChecked = strTask01[22].toString() == "1"
+        cbCheckList23.isChecked = strTask01[23].toString() == "1"
+        cbCheckList24.isChecked = strTask01[24].toString() == "1"
+        val df = DecimalFormat("#.##")
+        var totalPercentage = df.format ((strMonthlyCount.toFloat() / (dateNumber.toFloat() * 25.0)) * 100.0)
+        textViewSummary!!.text="Today: " + strDailyCount +" of 25. \nTotal: "+ strMonthlyCount + " of " + (dateNumber.toInt() * 25) + " ("+totalPercentage + " %)"
     }
 
     private fun updateTaskToSheet() {
         //val loading = ProgressDialog.show(requireActivity().applicationContext, "Adding Item", "Please wait")
-
-
         //val name = editTextItemName!!.text.toString().trim { it <= ' ' }
         val brand = textViewSummary!!.text.toString().trim { it <= ' ' }
         var dataAlphanumeric = "00"
@@ -444,7 +372,7 @@ class CheckListFragment : Fragment(), View.OnClickListener {
 
         val stringRequest: StringRequest =
             object : StringRequest(
-                Method.POST, "https://script.google.com/macros/s/AKfycbxKp0kp8Bgotjv81AgwnkROZ5MI8U19Hmq0r6GLAc36Gb_MNdA/exec",
+                Method.POST, "https://script.google.com/macros/s/AKfycbyzLKkNoicthE1x2ACgnJVOyUunDGQDYJpA7i5nkDAGqogV3Z15/exec",
                 Response.Listener { response ->
                     //loading.dismiss()
                     //Toast.makeText(this@AddItem, response, Toast.LENGTH_LONG).show()
