@@ -1,13 +1,13 @@
-package com.app.abasiccommondiary.ui.gallery
+package com.app.abasiccommondiary.ui.rto
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class GalleryViewModel : ViewModel() {
+class RtoViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is gallery Fragment"
+        //value = "This is RTO Fragment"
     }
     val text: LiveData<String> = _text
 }

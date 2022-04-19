@@ -13,9 +13,9 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:id="@+id/nav_rto"
+            android:icon="@drawable/ic_menu_rto"
+            android:title="@string/menu_rto" />
         <item
             android:id="@+id/nav_timer"
             android:icon="@drawable/ic_menu_timer"
