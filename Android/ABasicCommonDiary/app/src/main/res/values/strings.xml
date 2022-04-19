@@ -10,5 +10,7 @@
     <string name="menu_checklist">Check List</string>
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_timer">Timer</string>
+    <string name="menu_start">Start</string>
+    <string name="start">Start</string>
 </resources>
