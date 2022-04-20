@@ -9,10 +9,6 @@
             android:icon="@drawable/ic_menu_checkbox"
             android:title="@string/menu_checklist" />
         <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
-        <item
             android:id="@+id/nav_rto"
             android:icon="@drawable/ic_menu_rto"
             android:title="@string/menu_rto" />
@@ -20,5 +16,9 @@
             android:id="@+id/nav_timer"
             android:icon="@drawable/ic_menu_timer"
             android:title="@string/menu_timer" />
+        <item
+            android:id="@+id/nav_train"
+            android:icon="@drawable/ic_menu_train"
+            android:title="@string/menu_train" />
     </group>
 </menu>
