@@ -13,4 +13,23 @@
     <string name="menu_start">Start</string>
     <string name="start">Start</string>
     <string name="menu_train">Train</string>
+    <string-array name="station_name">
+        <item>PUNE</item>
+        <item>SHIVAJINAGAR</item>
+        <item>KHADKI</item>
+        <item>DAPODI</item>
+        <item>KASARWADI</item>
+        <item>PIMPRI</item>
+        <item>CHINCHWAD</item>
+        <item>AKURDI</item>
+        <item>DEHUROAD</item>
+        <item>BEGDEWADI</item>
+        <item>GORAWADI</item>
+        <item>TALEGAON</item>
+        <item>WADGAON</item>
+        <item>KANHE</item>
+        <item>KAMSHET</item>
+        <item>MALWALI</item>
+        <item>LONAWALA</item>
+    </string-array>
 </resources>

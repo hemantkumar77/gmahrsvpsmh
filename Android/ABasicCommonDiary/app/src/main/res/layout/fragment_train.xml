@@ -19,24 +19,32 @@
         tools:showIn="@layout/app_bar_main">
         <TextView
             android:id="@+id/trainDetails"
-            android:layout_width="wrap_content"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="15sp"
             android:text="Train Details" />
         <TextView
-            android:id="@+id/stationName"
+            android:id="@+id/trainUp"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="@color/blue_dark"
+            android:layout_toEndOf="@id/trainDetails"
+            android:text="UP" />
+        <Spinner
+            android:id="@+id/spn_station_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:text="Station Name" />
+            android:entries="@array/station_name"
+            android:layout_toEndOf="@id/trainUp"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_below="@id/trainDetails"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_below="@id/trainDetails" />
 
     </RelativeLayout>
 

@@ -13,7 +13,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" >
         <TableLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:background="#000000"
+            android:background="#ffffff"
             android:stretchColumns="*">
             <TableRow android:background="#80ffff">
 
@@ -23,11 +23,11 @@
                     android:layout_height="wrap_content"
                     android:layout_span="4"
                     android:layout_weight="0.2"
-                    android:background="#3e37a6"
+                    android:background="#80ffff"
                     android:gravity="center"
                     android:fontFamily="sans-serif"
                     android:text="Week-Year Month Date"
-                    android:textColor="#ffff"
+                    android:textColor="#ff0000"
                     android:textSize="30sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

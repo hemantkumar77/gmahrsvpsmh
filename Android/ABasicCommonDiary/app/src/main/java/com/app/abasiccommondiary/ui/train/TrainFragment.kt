@@ -1,5 +1,6 @@
 package com.app.abasiccommondiary.ui.train
 
+import android.R.attr
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -30,19 +31,18 @@ import kotlinx.android.synthetic.main.fragment_timer.*
 import kotlinx.android.synthetic.main.fragment_train.*
 import kotlin.collections.ArrayList
 import org.json.JSONObject
+import android.widget.AdapterView
 
 class TrainFragment : Fragment(), View.OnClickListener {
-
+    //https://www.tutorialspoint.com/working-with-recyclerview-in-an-android-app-using-kotlin
     private lateinit var trainViewModel: TrainViewModel
     private var _binding: FragmentTrainBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
-    //https://www.tutorialspoint.com/working-with-recyclerview-in-an-android-app-using-kotlin
     private val trainList = ArrayList<TrainModel>()
     private lateinit var trainAdapter: TrainAdapter
-    var tvTitle : TextView? = null
+    private lateinit var tvUp : TextView
     var tvTimer : TextView? = null
     var etTimer : EditText? = null
     var etStateCode : EditText? = null
@@ -64,8 +64,9 @@ class TrainFragment : Fragment(), View.OnClickListener {
     var strTrainTime01 = "1111"
     var arr01 = arrayListOf<String>()
     var arr02 = arrayListOf<String>()
+    var strStationName = ""
     var tvTrainDetails : TextView? = null
-    var tvStationName : TextView? = null
+    var spnStationName : Spinner? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -78,8 +79,22 @@ class TrainFragment : Fragment(), View.OnClickListener {
         val root: View = binding.root
 
         val textView: TextView = binding.textTrain
+        tvUp = binding.trainUp
         tvTrainDetails = binding.trainDetails
-        tvStationName = binding.stationName
+        spnStationName = binding.spnStationName
+        spnStationName!!.setSelection(8,true)
+        spnStationName!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                strStationName = "" + p0?.getItemAtPosition(p2).toString()
+                //tvTrainDetails!!.text = p0?.getItemIdAtPosition(p2).toString()
+                loadData()
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+        }
+        tvUp!!.setOnClickListener(this)
         val recyclerView: RecyclerView = binding.recyclerView
         trainAdapter = TrainAdapter(trainList)
         val layoutManager = LinearLayoutManager(requireActivity().applicationContext)
@@ -91,14 +106,17 @@ class TrainFragment : Fragment(), View.OnClickListener {
         trainViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
+
         return root
     }
 
     private fun loadData(){
+        trainList.clear()
         //loading = ProgressDialog.show(this, "Loading", "please wait", false, true)
-        var strStationName = "DEHUROAD"
-        var strUpOrDown = "UP"
-        tvStationName!!.text = strStationName
+        if(strStationName.isEmpty()){
+            strStationName = "DEHUROAD"
+        }
+        var strUpOrDown = tvUp.text
         var strScriptURL = "https://script.google.com/macros/s/AKfycbyzLKkNoicthE1x2ACgnJVOyUunDGQDYJpA7i5nkDAGqogV3Z15/exec?action=getTrainStationTime&trainStation=" + strStationName + "&upOrDown=" + strUpOrDown
         //var strScriptURL =   "https://script.google.com/macros/s/AKfycbyzLKkNoicthE1x2ACgnJVOyUunDGQDYJpA7i5nkDAGqogV3Z15/exec?action=getTrainStationTime&trainStation=AKURDI&upOrDown=UP"
 
@@ -260,6 +278,20 @@ class TrainFragment : Fragment(), View.OnClickListener {
             if(btnStartTimer.text.contains("Reset")) {
                 btnStartTimer!!.setText("Stop")
             }
+        }
+        if (v === tvUp){
+            if (tvUp.text.contains("UP")){
+                tvUp!!.text = "DOWN"
+            }
+            else if (tvUp.text.contains("DOWN")){
+                tvUp!!.text = "UP"
+            }
+            loadData()
+        }
+
+        if (v == spnStationName){
+            //if(spnStationName.chang)
+            loadData()
         }
     }
 

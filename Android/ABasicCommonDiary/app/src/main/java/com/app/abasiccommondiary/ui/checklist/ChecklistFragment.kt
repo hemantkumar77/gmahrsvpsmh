@@ -232,7 +232,7 @@ class ChecklistFragment : Fragment(), View.OnClickListener {
         }
         val df = DecimalFormat("#.##")
         var totalPercentage = df.format ((strMonthlyCount.toFloat() / (dateNumber.toFloat() * 35.0)) * 100.0)
-        textViewSummary!!.text="Today: " + strDailyCount +" of 35. \nTotal: "+ strMonthlyCount + " of " + (dateNumber.toInt() * 35) + " ("+totalPercentage + " %)"
+        textViewSummary!!.text="Today: " + strDailyCount +" of 35. || Total: "+ strMonthlyCount + " of " + (dateNumber.toInt() * 35) + " ("+totalPercentage + " %)"
     }
 
     override fun onClick(v: View) {
