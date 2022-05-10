@@ -60,8 +60,6 @@ class TimerFragment : Fragment(), View.OnClickListener {
 
         _binding = FragmentTimerBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        val textView: TextView = binding.textTimer
         tvTitle = binding.txtTitle
         tvTimer = binding.txtTimer
         etTimer = binding.textInputEditTextTimer

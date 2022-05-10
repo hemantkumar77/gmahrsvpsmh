@@ -2,6 +2,7 @@ package com.app.abasiccommondiary.ui.checklist
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -35,6 +36,8 @@ class ChecklistFragment : Fragment(), View.OnClickListener {
     private lateinit var textViewMonthDate: TextView
     private lateinit var buttonNextTask: Button
     private lateinit var textHome: TextView
+    var darkMode = ""
+    var colorString = ""
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
     override fun onCreateView(
@@ -63,12 +66,25 @@ class ChecklistFragment : Fragment(), View.OnClickListener {
         buttonNextTask = binding.nextbtn
         textHome = binding.textHome
 
+        val nightModeFlags = context!!.resources.configuration.uiMode and
+                Configuration.UI_MODE_NIGHT_MASK
+        when (nightModeFlags) {
+            Configuration.UI_MODE_NIGHT_YES -> darkMode="Yes"
+            Configuration.UI_MODE_NIGHT_NO -> darkMode="No"
+            Configuration.UI_MODE_NIGHT_UNDEFINED -> darkMode="IDK"
+        }
+
+        var colorString2 = Color.GRAY
+        if(darkMode.contains("No"))
+            colorString2 = Color.BLACK
+
         val textView: TextView = binding.textHome
         checklistViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = "G. HemantH Kumar"
+            textView.text = ""
 
             for (i in 0..34) {
-                textViewChecklist[i].setTextColor(Color.GRAY)
+                //textViewChecklist[i].setTextColor(Color.GRAY)
+                textViewChecklist[i].setTextColor(colorString2)
             }
         })
 
@@ -79,6 +95,7 @@ class ChecklistFragment : Fragment(), View.OnClickListener {
         buttonLoadTask!!.setOnClickListener(this)
         buttonPrevTask!!.setOnClickListener(this)
         buttonNextTask!!.setOnClickListener(this)
+
         loadTasks()
         return root
     }
@@ -96,12 +113,23 @@ class ChecklistFragment : Fragment(), View.OnClickListener {
         val arr = Pattern.compile(",").split(textViewMonthDate.text.toString())
         dateNumber = arr[0]// textViewMonthDate.text.toString()
 
+        //                    textViewChecklist[i].setTextColor(Color.CYAN)
         for(i in 0..34){
-            dataAlphanumeric += if(textViewChecklist[i].currentTextColor==Color.parseColor("#1dbfc4")){
-                "1"
+            if(darkMode.contains("Yes")){
+                dataAlphanumeric += if(textViewChecklist[i].currentTextColor==Color.CYAN){
+                    "1"
+                }
+                else {
+                    "0"
+                }
             }
-            else {
-                "0"
+            else{
+                dataAlphanumeric += if(textViewChecklist[i].currentTextColor==Color.GREEN){
+                    "1"
+                }
+                else {
+                    "0"
+                }
             }
         }
 
@@ -220,14 +248,20 @@ class ChecklistFragment : Fragment(), View.OnClickListener {
         val strDailyCount = parts01[1]
         val strMonthlyCount = parts01[2]
         textViewSummary!!.text = "666.  $strTask01, $strDailyCount, $strMonthlyCount"
-        textHome!!.text = "665.  $strTask01, $strDailyCount, $strMonthlyCount"
+        //textHome!!.text = "665.  $strTask01, $strDailyCount, $strMonthlyCount"
 
         for(i in 0..34){
             if(strTask01[i].toString()== "1"){
-                textViewChecklist[i].setTextColor(Color.parseColor("#1dbfc4"))
+                if(darkMode.contains("Yes"))
+                    textViewChecklist[i].setTextColor(Color.CYAN)
+                else
+                    textViewChecklist[i].setTextColor(Color.GREEN)
             }
             else if(strTask01[i].toString()== "0"){
-                textViewChecklist[i].setTextColor(Color.GRAY)
+                if(darkMode.contains("Yes"))
+                    textViewChecklist[i].setTextColor(Color.GRAY)
+                else
+                    textViewChecklist[i].setTextColor(Color.BLACK)
             }
         }
         val df = DecimalFormat("#.##")
@@ -255,13 +289,17 @@ class ChecklistFragment : Fragment(), View.OnClickListener {
         for(i in 0..34) {
             if(v===textViewChecklist[i]){
                 if(textViewChecklist[i].currentTextColor==Color.GRAY){
-                    textViewChecklist[i].setTextColor(Color.parseColor("#1dbfc4"))}
-                else if(textViewChecklist[i].currentTextColor==Color.parseColor("#1dbfc4")){
+                    textViewChecklist[i].setTextColor(Color.CYAN)}
+                else if(textViewChecklist[i].currentTextColor==Color.CYAN){
                     textViewChecklist[i].setTextColor(Color.GRAY)}
+                else if(textViewChecklist[i].currentTextColor==Color.BLACK){
+                    textViewChecklist[i].setTextColor(Color.GREEN)}
+                else if(textViewChecklist[i].currentTextColor==Color.GREEN){
+                    textViewChecklist[i].setTextColor(Color.BLACK)}
             }
-
         }
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
