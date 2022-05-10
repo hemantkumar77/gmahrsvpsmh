@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context=".ui.timer.TimerFragment">
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="350dp"
+        android:layout_height="41dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Timer"
+        android:textColor="#ffffff"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tvTimeInterval"
+        android:layout_width="220dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="16dp"
+        android:text="Time Interval: "
+        android:textColor="#ffffff"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.099"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtTitle"
+        tools:ignore="MissingConstraints" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutSearchRtoCode"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintLeft_toRightOf="@id/tvTimeInterval"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="0.001"
+        app:layout_constraintTop_toBottomOf="@id/txtTitle"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEditTextTimer"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:hint="Enter Time Interval" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tvTimerText"
+        android:layout_width="220dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="16dp"
+        android:text="Timer: "
+        android:textColor="#ffffff"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.099"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTimeInterval"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/txtTimer"
+        android:layout_width="165dp"
+        android:layout_height="75dp"
+        android:text="0"
+        android:textColor="#ffff00"
+        android:textSize="36dp"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutSearchRtoCode"
+        app:layout_constraintLeft_toRightOf="@id/tvTimerText"
+        tools:ignore="MissingConstraints" />
+    <Chronometer
+        android:id="@+id/c_meter"
+        android:layout_width="165dp"
+        android:layout_height="75dp"
+        android:layout_margin="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#1dbfc4"
+        android:textSize="36sp"
+        app:layout_constraintLeft_toRightOf="@id/txtTimer"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutSearchRtoCode" />
+
+    <Button
+        android:id="@+id/btnStartTimer"
+        android:layout_width="148dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/button_green"
+        android:text="@string/start"
+        android:textColor="#ffffff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.584"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/c_meter" />
+
+    <Button
+        android:id="@+id/btnResume"
+        android:layout_width="148dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/button_blue"
+        android:text="Resume"
+        android:textColor="#ffffff"
+        app:layout_constraintTop_toBottomOf="@+id/c_meter"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintStart_toEndOf="@id/btnStartTimer"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,7 +14,7 @@
         <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#fffff0"
+            android:background="#000000"
             android:stretchColumns="*">
             <TableRow
                 android:background="#80ffff">
@@ -93,7 +93,7 @@
                     android:layout_marginBottom="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_span="1"
-                    android:background="@drawable/button_green"
+                    android:background="@drawable/button_blue"
                     android:text="Get Rto"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -136,7 +136,7 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
-                    android:background="@drawable/button_green"
+                    android:background="@drawable/button_blue"
                     android:id="@+id/btRtoList"
                     android:layout_marginEnd="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -175,7 +175,7 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
-                    android:background="@drawable/button_green"
+                    android:background="@drawable/button_blue"
                     android:id="@+id/btSpokenRtoCode"
                     android:layout_marginEnd="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -233,7 +233,7 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
-                    android:background="@drawable/button_green"
+                    android:background="@drawable/button_red"
                     android:id="@+id/btStopReadRtoCode"
                     android:layout_marginEnd="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
