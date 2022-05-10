@@ -65,7 +65,7 @@ class ChecklistFragment : Fragment(), View.OnClickListener {
 
         val textView: TextView = binding.textHome
         checklistViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = "G. Hemant Kumar"
+            textView.text = "G. HemantH Kumar"
 
             for (i in 0..34) {
                 textViewChecklist[i].setTextColor(Color.GRAY)
