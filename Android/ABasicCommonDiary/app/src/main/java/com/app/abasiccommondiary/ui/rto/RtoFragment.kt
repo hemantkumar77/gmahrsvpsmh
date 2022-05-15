@@ -16,7 +16,6 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-//import androidx.lifecycle.ViewModelProviders
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
@@ -27,10 +26,8 @@ import android.view.MotionEvent
 import com.android.volley.*
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-//import com.kumar.hemant.traintimetable2009.R
 import java.lang.Double.parseDouble
 import java.lang.NumberFormatException
-import java.util.*
 
 class RtoFragment : Fragment(), View.OnClickListener {
 
@@ -49,8 +46,7 @@ class RtoFragment : Fragment(), View.OnClickListener {
     var btReadRtoCode : Button? = null
     var btStopReadRtoCode : Button? = null
     lateinit var mTTS: TextToSpeech
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -64,7 +60,6 @@ class RtoFragment : Fragment(), View.OnClickListener {
         _binding = FragmentRtoBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textRto
         tvTitle = binding.txtTitle
         etStateCode = binding.textInputEditTextStateCode
         etRtoCode = binding.textInputEditTextRtoCode
@@ -82,9 +77,6 @@ class RtoFragment : Fragment(), View.OnClickListener {
         btStopReadRtoCode = binding.btReadRtoCode
         btStopReadRtoCode!!.setOnClickListener(this)
         rtoViewModel.text.observe(viewLifecycleOwner, Observer { tvTitle!!.text = it })
-        rtoViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
 
         mTTS = TextToSpeech(requireActivity().applicationContext, TextToSpeech.OnInitListener { status ->
             if (status != TextToSpeech.ERROR){
@@ -94,7 +86,6 @@ class RtoFragment : Fragment(), View.OnClickListener {
         })
 
         etStateCode!!.addTextChangedListener(object : TextWatcher {
-
             override fun afterTextChanged(s: Editable) {
                 if(etStateCode!!.text.length==2){
                     etRtoCode!!.requestFocus()
@@ -151,7 +142,7 @@ class RtoFragment : Fragment(), View.OnClickListener {
         var strRtoText = etSearchRtoCode?.text.toString()
         val stringRequest = StringRequest(
             Request.Method.GET,
-            "https://script.google.com/macros/s/AKfycbxKp0kp8Bgotjv81AgwnkROZ5MI8U19Hmq0r6GLAc36Gb_MNdA/exec?action=getRtoList&rtoText=" + strRtoText,
+            "https://script.google.com/macros/s/AKfycbyzLKkNoicthE1x2ACgnJVOyUunDGQDYJpA7i5nkDAGqogV3Z15/exec?action=getRTOList&rtoText=" + strRtoText,
             Response.Listener { response -> parseItems(response) },
             Response.ErrorListener {
                 tvSummary!!.text = "555.  Into Error...."
@@ -229,7 +220,7 @@ class RtoFragment : Fragment(), View.OnClickListener {
         }
         val stringRequest = StringRequest(
             Request.Method.GET,
-            "https://script.google.com/macros/s/AKfycbxKp0kp8Bgotjv81AgwnkROZ5MI8U19Hmq0r6GLAc36Gb_MNdA/exec?action=getRtoDetails&stateCode=" + strStateCode + "&rtoCode=" + strRtoCode,
+            "https://script.google.com/macros/s/AKfycbyzLKkNoicthE1x2ACgnJVOyUunDGQDYJpA7i5nkDAGqogV3Z15/exec?action=getRTODetails&stateCode=" + strStateCode + "&rtoCode=" + strRtoCode,
             Response.Listener { response -> parseItems(response) },
             Response.ErrorListener {
                 tvSummary!!.text = "777.  Into Error...."

@@ -49,7 +49,6 @@ class TrainFragment : Fragment(), View.OnClickListener {
         _binding = FragmentTrainBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textTrain
         tvUp = binding.trainUp
         tvTrainDetails = binding.trainDetails
         spnStationName = binding.spnStationName
@@ -74,9 +73,11 @@ class TrainFragment : Fragment(), View.OnClickListener {
         recyclerView.adapter = trainAdapter
         loadData()
 
+/*
         trainViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
+*/
 
         return root
     }

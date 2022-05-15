@@ -19,15 +19,13 @@ import android.widget.*
 import kotlinx.android.synthetic.main.fragment_timer.*
 import com.app.abasiccommondiary.databinding.FragmentTimerBinding
 import com.app.abasiccommondiary.R
-import kotlinx.coroutines.NonCancellable.start
 
 class TimerFragment : Fragment(), View.OnClickListener {
 
     private lateinit var timerViewModel: TimerViewModel
     private var _binding: FragmentTimerBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
     var tvTitle : TextView? = null
