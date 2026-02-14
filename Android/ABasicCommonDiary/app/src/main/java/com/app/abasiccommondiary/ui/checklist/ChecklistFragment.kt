@@ -30,6 +30,7 @@ class ChecklistFragment : Fragment(), View.OnClickListener {
     private lateinit var textViewDate: TextView
     private lateinit var textViewSummary: TextView
     private var textViewChecklist = ArrayList<TextView>()
+    private var textViewChecklistTime = ArrayList<TextView>()
     private lateinit var buttonSaveTask: Button
     private lateinit var buttonLoadTask: Button
     private lateinit var buttonPrevTask: Button
@@ -57,6 +58,7 @@ class ChecklistFragment : Fragment(), View.OnClickListener {
             binding.A20,binding.A21,binding.A22,binding.A23,binding.A24,binding.A25,binding.A26,binding.A27,binding.A28,binding.A29,
             binding.A30,binding.A31,binding.A32,binding.A33,binding.A34)
 
+
         textViewDate = binding.tvDate
         textViewSummary = binding.txtSummary
         buttonSaveTask = binding.savebtn
@@ -65,7 +67,11 @@ class ChecklistFragment : Fragment(), View.OnClickListener {
         textViewMonthDate = binding.monthDate
         buttonNextTask = binding.nextbtn
         textHome = binding.textHome
-
+        textViewChecklistTime = arrayListOf<TextView>(
+            binding.B00,binding.B01,binding.B02,binding.B03,binding.B04,binding.B05,binding.B06,binding.B07,binding.B08,binding.B09,
+            binding.B10,binding.B11,binding.B12,binding.B13,binding.B14,binding.B15,binding.B16,binding.B17,binding.B18,binding.B19,
+            binding.B20,binding.B21,binding.B22,binding.B23,binding.B24,binding.B25,binding.B26,binding.B27,binding.B28,binding.B29,
+            binding.B30,binding.B31,binding.B32,binding.B33,binding.B34)
         val nightModeFlags = context!!.resources.configuration.uiMode and
                 Configuration.UI_MODE_NIGHT_MASK
         when (nightModeFlags) {
@@ -88,9 +94,28 @@ class ChecklistFragment : Fragment(), View.OnClickListener {
             }
         })
 
+        val currentDate1 = LocalDateTime.now()
+        var strWeekName1 = currentDate1.dayOfWeek.toString()
+        val timeWFO = arrayOf<String>("2300","630", "640", "700", "704", "706", "716", "720", "840", "842", "852", "854", "900", "904", "1300", "1700", "1702", "1704", "1830", "1856", "1858", "2030", "2032", "2130", "2145", "2200", "2230", "2245", "2245", "2246", "2249", "2250", "2252", "2255", "2300")
+        val timeWFH = arrayOf<String>("2300","630", "640", "700", "704", "706", "716", "720", "840", "842", "852", "854", "900", "904", "1300", "1700", "1702", "1704", "1830", "1856", "1858", "2030", "2032", "2130", "2145", "2200", "2230", "2245", "2245", "2246", "2249", "2250", "2252", "2255", "2300")
+        val timeSAT = arrayOf<String>("2300","630", "640", "700", "704", "706", "716", "720", "840", "842", "852", "854", "900", "904", "1300", "1700", "1702", "1704", "1830", "1856", "1858", "2030", "2032", "2130", "2145", "2200", "2230", "2245", "2245", "2246", "2249", "2250", "2252", "2255", "2300")
+        val timeSUN = arrayOf<String>("2300","630", "640", "700", "704", "706", "716", "720", "840", "842", "852", "854", "900", "904", "1300", "1700", "1702", "1704", "1830", "1856", "1858", "2030", "2032", "2130", "2145", "2200", "2230", "2245", "2245", "2246", "2249", "2250", "2252", "2255", "2300")
+
+        val taskIcon = arrayOf<String>("\uf236", "\ue061", "\uf683", "\uf5a5", "\uf2a2", "\uf4fc", "\uf063", "\uf70c", "\ue4c5", "\uf2cc", "\uf1fb", "\uf0fa", "\uf02d", "\uf275", "\ue05c", "\ue4c5", "\uf1fb", "\uf085", "\uf1BB", "\uE55A", "\ue4c5", "\ue05c", "\uf500", "\uf5da", "\uf518", "\uf447", "\uf647", "\uf17b", "\uf7a0", "\uf54b", "\uf588", "\uf1fb", "\uf10b", "\uf04a", "\uf62e")
         for(i in 0..34){
             textViewChecklist[i]!!.setOnClickListener(this)
+            if(strWeekName1.equals("SATURDAY"))
+                textViewChecklistTime[i]!!.setText(timeSAT[i].toString())
+            else if(strWeekName1.equals("SUNDAY"))
+                textViewChecklistTime[i]!!.setText(timeSUN[i].toString())
+            else if(strWeekName1.equals("THURSDAY") || strWeekName1.equals("FRIDAY"))
+                textViewChecklistTime[i]!!.setText(timeWFH[i].toString())
+            else{
+                textViewChecklistTime[i]!!.setText(timeWFO[i].toString())
+                textViewChecklist[i]!!.setText(taskIcon[i])
+            }
         }
+
         buttonSaveTask!!.setOnClickListener(this)
         buttonLoadTask!!.setOnClickListener(this)
         buttonPrevTask!!.setOnClickListener(this)
@@ -131,6 +156,8 @@ class ChecklistFragment : Fragment(), View.OnClickListener {
                     "0"
                 }
             }
+            val currentDate = LocalDateTime.now()
+
         }
 
         dataAlphanumeric+="a"
@@ -268,6 +295,7 @@ class ChecklistFragment : Fragment(), View.OnClickListener {
         var totalPercentage = df.format ((strMonthlyCount.toFloat() / (dateNumber.toFloat() * 35.0)) * 100.0)
         textViewSummary!!.text="Today: " + strDailyCount +" of 35. || Total: "+ strMonthlyCount + " of " + (dateNumber.toInt() * 35) + " ("+totalPercentage + " %)"
     }
+
 
     override fun onClick(v: View) {
         if (v === buttonSaveTask) {

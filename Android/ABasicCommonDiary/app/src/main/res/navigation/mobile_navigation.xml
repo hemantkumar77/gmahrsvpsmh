@@ -28,4 +28,9 @@
         android:name="com.app.abasiccommondiary.ui.train.TrainFragment"
         android:label="@string/menu_train"
         tools:layout="@layout/fragment_train" />
+    <fragment
+        android:id="@+id/nav_pot"
+        android:name="com.app.abasiccommondiary.ui.pot.PotFragment"
+        android:label="@string/menu_pot"
+        tools:layout="@layout/fragment_pot" />
 </navigation>

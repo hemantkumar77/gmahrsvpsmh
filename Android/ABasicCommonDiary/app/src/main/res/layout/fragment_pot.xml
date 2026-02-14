@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.pot.PotFragment">
+
+    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" android:orientation="vertical"
+        android:layout_alignParentStart="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+        <TableLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:stretchColumns="*">
+            <TableRow android:background="#80ffff">
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_span="4"
+                    android:layout_weight="0.2"
+                    android:background="#80ffff"
+                    android:gravity="center"
+                    android:fontFamily="sans-serif"
+                    android:text="Week-Year Month Date"
+                    android:textColor="#ff0000"
+                    android:textSize="30sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </TableRow>
+            <TableRow android:background="#000000">
+                <TextView android:background="#3e37a6" android:textSize="14sp" android:id="@+id/txtSummary"
+                    android:textColor="#ffffff" android:layout_width="wrap_content" android:layout_weight="0.8"
+                    android:layout_height="50dp" android:gravity="center" android:layout_span="4" android:fontFamily="sans-serif" />
+            </TableRow>
+            <TableRow android:background="#000000">
+            </TableRow>
+            <TableRow android:background="#80ffff">
+                <TextView android:background="#000000" android:textSize="4dp" android:id="@+id/txtSeparator"
+                    android:textColor="#1dbfc4" android:layout_width="wrap_content" android:layout_weight="0.8"
+                    android:layout_height="wrap_content" android:gravity="center" android:layout_span="4"/>
+            </TableRow>
+        </TableLayout>
+        <TableLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="#000000" android:stretchColumns="*">
+            <TableRow>
+                <TextView android:id="@+id/SAVLabel" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
+                    android:layout_height="60dp" android:gravity="center" android:layout_span="2"
+                    android:textColor="@color/cardview_light_background"
+                    android:fontFamily="@font/fa_solid" android:text="\uf4d3"                    />
+                <TextView android:id="@+id/SAV" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
+                    android:layout_height="60dp" android:gravity="right" android:layout_span="5"
+                    android:textColor="@color/cardview_light_background"
+                    />
+                <TextView android:id="@+id/SAVDIFF" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
+                    android:layout_height="60dp" android:gravity="right" android:layout_span="4"
+                    android:textColor="@color/green"
+                    />
+            </TableRow>
+            <TableRow>
+                <TextView android:id="@+id/SIPLabel" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
+                    android:layout_height="60dp" android:gravity="center" android:layout_span="2"
+                    android:textColor="@color/cardview_light_background"
+                    android:fontFamily="@font/fa_solid" android:text="\ue529"                    />
+                <TextView android:id="@+id/SIP" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
+                    android:layout_height="60dp" android:gravity="right" android:layout_span="5"
+                    android:textColor="@color/cardview_light_background"
+                    />
+                <TextView android:id="@+id/SIPDIFF" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
+                    android:layout_height="60dp" android:gravity="right" android:layout_span="4"
+                    android:textColor="@color/green"
+                    />
+            </TableRow>
+            <TableRow>
+                <TextView android:id="@+id/FNOLabel" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
+                    android:layout_height="60dp" android:gravity="center" android:layout_span="2"
+                    android:textColor="@color/cardview_light_background" android:fontFamily="@font/fa_solid" android:text="\ue098"/>
+                <TextView android:id="@+id/FNO" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
+                    android:layout_height="60dp" android:gravity="right" android:layout_span="5"
+                    android:textColor="@color/cardview_light_background"/>
+                <TextView android:id="@+id/FNODIFF" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
+                    android:layout_height="60dp" android:gravity="right" android:layout_span="4"
+                    android:textColor="@color/green"/>
+            </TableRow>
+            <TableRow>
+                <TextView android:id="@+id/CRPLabel" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
+                    android:layout_height="60dp" android:gravity="center" android:layout_span="2"
+                    android:textColor="@color/cardview_light_background" android:fontFamily="@font/fa_solid" android:text="\ue3f5"/>
+                <TextView android:id="@+id/CRP" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
+                    android:layout_height="60dp" android:gravity="right" android:layout_span="5"
+                    android:textColor="@color/cardview_light_background"/>
+                <TextView android:id="@+id/CRPDIFF" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
+                    android:layout_height="60dp" android:gravity="right" android:layout_span="4"
+                    android:textColor="@color/green"/>
+            </TableRow>
+            <TableRow>
+                <TextView android:id="@+id/POLLabel" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
+                    android:layout_height="60dp" android:gravity="center" android:layout_span="2"
+                    android:textColor="@color/cardview_light_background" android:fontFamily="@font/fa_solid" android:text="\uf03a"/>
+                <TextView android:id="@+id/POL" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
+                    android:layout_height="60dp" android:gravity="right" android:layout_span="5"
+                    android:textColor="@color/cardview_light_background"/>
+                <TextView android:id="@+id/POLDIFF" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
+                    android:layout_height="60dp" android:gravity="right" android:layout_span="4"
+                    android:textColor="@color/green"/>
+            </TableRow>
+            <TableRow>
+                <TextView android:id="@+id/textPotTotalLabel" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
+                    android:layout_height="60dp" android:gravity="center" android:layout_span="2"
+                    android:textColor="@color/cardview_light_background" android:fontFamily="@font/fa_solid" android:text="\u2b"/>
+                <TextView android:id="@+id/textPotTotal" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
+                    android:layout_height="60dp" android:gravity="right" android:layout_span="5"
+                    android:textColor="@color/cardview_light_background"/>
+                <TextView android:id="@+id/textPotTotalDIFF" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
+                    android:layout_height="60dp" android:gravity="right" android:layout_span="4"
+                    android:textColor="@color/green"/>
+            </TableRow>
+        </TableLayout>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#000000">
+
+            <TextView
+                android:id="@+id/potSplit"
+                android:layout_width="wrap_content"
+                android:layout_height="180dp"
+                android:layout_weight="0.8"
+                android:gravity="center"
+                android:visibility="invisible"
+                android:text="G. Hemant Kumar G. Hemant Kumar"
+                android:textSize="20sp" />
+        </TableLayout>
+        <TableLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="#000000" android:stretchColumns="*">
+            <TableRow>
+                <Button android:layout_marginRight="2dp" android:id="@+id/showbtn" android:layout_width="30dp" android:layout_height="wrap_content" android:background="@drawable/button_green" android:text="Show" />
+                <Button android:layout_marginRight="2dp" android:id="@+id/loadbtn" android:layout_width="30dp" android:layout_height="wrap_content" android:background="@drawable/button_orange" android:text="Load"/>
+                <Button android:layout_marginRight="2dp" android:id="@+id/prevbtn" android:layout_width="30dp" android:layout_height="wrap_content" android:background="@drawable/button_blue" android:text="Prev"/>
+                <TextView android:id="@+id/month_date" android:textSize="15sp" android:textColor="#ff0000" android:layout_width="wrap_content" android:layout_weight="0.8"
+                    android:layout_height="50dp" android:gravity="center" android:layout_span="1" android:padding="0dp"
+                    android:text="Enter the Date" android:fontFamily="sans-serif"
+                    android:width="20sp"
+                    />
+                <Button android:layout_marginRight="2dp" android:id="@+id/nextbtn" android:layout_width="30dp" android:layout_height="wrap_content" android:background="@drawable/button_blue" android:text="Next"/>
+            </TableRow>
+        </TableLayout>
+        <TableLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="#000000" android:stretchColumns="*">
+            <TableRow>
+                <TextView android:layout_marginRight="8dp"/>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

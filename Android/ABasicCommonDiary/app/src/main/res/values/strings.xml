@@ -13,6 +13,7 @@
     <string name="menu_start">Start</string>
     <string name="start">Start</string>
     <string name="menu_train">Train</string>
+    <string name="menu_pot">Pot</string>
     <string-array name="station_name">
         <item>PUNE</item>
         <item>SHIVAJINAGAR</item>

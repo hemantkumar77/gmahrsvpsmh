@@ -16,7 +16,7 @@ import android.os.Handler
 import android.os.Looper
 import android.os.SystemClock
 import android.widget.*
-import kotlinx.android.synthetic.main.fragment_timer.*
+//import kotlinx.android.synthetic.main.fragment_timer.*
 import com.app.abasiccommondiary.databinding.FragmentTimerBinding
 import com.app.abasiccommondiary.R
 
@@ -47,6 +47,7 @@ class TimerFragment : Fragment(), View.OnClickListener {
     var c_seconds:Long = 0
     var offset:Long = 0
     var int_a:Int = 0
+    lateinit var c_meter : Chronometer
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -63,10 +64,10 @@ class TimerFragment : Fragment(), View.OnClickListener {
         etTimer = binding.textInputEditTextTimer
         btStartTimer = binding.btnStartTimer
         btResume = binding.btnResume
-
         btStartTimer!!.setOnClickListener(this)
         btResume!!.setOnClickListener(this)
-
+        //c_meter = findViewById(R.id.nav_timer)
+        c_meter = binding.cMeter
         timerViewModel.text.observe(viewLifecycleOwner, Observer {
             tvTitle!!.text = it
         })
@@ -92,8 +93,9 @@ class TimerFragment : Fragment(), View.OnClickListener {
         override fun run() {
             //minusOneSecond()
             mainHandler.postDelayed(this, 1000)
-
-            if(btnStartTimer.text.contains("Stop")){
+            var s11 = btStartTimer
+            //if(btnStartTimer.text.contains("Stop")){
+            if(s11?.text?.contains("Stop") ?: true){
                 var intTimer1: Int = ("" + tvTimer!!.text.toString()).toInt()
                 int_a = ("" + etTimer!!.text.toString()).toInt()
                 //var intTimer1: Int = 0
@@ -135,29 +137,29 @@ class TimerFragment : Fragment(), View.OnClickListener {
             println("aaaaaaaaaaaaaaaaaaaaaaa")
             mediaPlayer?.start()
 
-            if(btnStartTimer.text.contains("Start")) {
+             if(btStartTimer!!.text.contains("Start")) {
                 c_meter.base = SystemClock.elapsedRealtime() - offset
                 //cmeter?.base ?: SystemClock.elapsedRealtime() - offset
 
                 c_meter.start()
-                btnStartTimer!!.text = "Stop"
+                btStartTimer!!.text = "Stop"
 
             }
-            else if(btnStartTimer.text.contains("Stop")) {
+            else if(btStartTimer!!.text.contains("Stop")){
                 c_meter.stop()
                 offset = SystemClock.elapsedRealtime() - c_meter.base
-                btnStartTimer!!.text = "Reset"
+                 btStartTimer!!.text = "Reset"
             }
-            else if(btnStartTimer.text.contains("Reset")) {
+            else if(btStartTimer!!.text.contains("Reset")){
                 c_meter.base = SystemClock.elapsedRealtime()
                 tvTimer!!.text = "0"
                 offset = 0
-                btnStartTimer!!.text = "Start"
+                btStartTimer!!.text = "Start"
             }
         }
         if (v === btResume) {
-            if(btnStartTimer.text.contains("Reset")) {
-                btnStartTimer!!.text = "Stop"
+            if(btStartTimer!!.text.contains("Reset")){
+                btStartTimer!!.text = "Stop"
             }
         }
     }
