@@ -35,7 +35,7 @@ class TimerFragment : Fragment(), View.OnClickListener {
     var etRtoCode : EditText? = null
     var etSearchRtoCode : EditText? = null
     var tvSpeak : TextView? = null
-    var tvSummary : TextView? = null
+    var tvCurrentTime : TextView? = null
     var etSpokenRtoCode : EditText? = null
     var btStartTimer : Button? = null
     var btResume : Button? = null
@@ -68,6 +68,7 @@ class TimerFragment : Fragment(), View.OnClickListener {
         btResume!!.setOnClickListener(this)
         //c_meter = findViewById(R.id.nav_timer)
         c_meter = binding.cMeter
+        tvCurrentTime = binding.txtCurrentTime
         timerViewModel.text.observe(viewLifecycleOwner, Observer {
             tvTitle!!.text = it
         })
@@ -134,6 +135,7 @@ class TimerFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View) {
         if (v === btStartTimer) {
+            println("aaaaaaaaaaaaaaaaaaaaaaa")
             println("aaaaaaaaaaaaaaaaaaaaaaa")
             mediaPlayer?.start()
 

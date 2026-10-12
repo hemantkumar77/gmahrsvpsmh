@@ -1,6 +1,7 @@
 package com.app.abasiccommondiary.ui.checklist
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
@@ -21,6 +22,9 @@ import java.time.LocalDateTime
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.app.abasiccommondiary.MainActivity
+import com.app.abasiccommondiary.ui.gallery.User
+import java.io.BufferedReader
+import java.io.InputStreamReader
 import java.text.DecimalFormat
 import java.util.regex.Pattern
 
@@ -333,4 +337,28 @@ class ChecklistFragment : Fragment(), View.OnClickListener {
         super.onDestroyView()
         _binding = null
     }
+
+    private fun readCsvFromAssetsOriginalll(context: Context?, fileName: String, monthNumber: Int): String {
+        val userList = mutableListOf<User>()
+        var abcString: String? = "Hemant"
+
+        try {
+            val inputStream = context?.assets?.open(fileName)
+            val reader = BufferedReader(InputStreamReader(inputStream))
+            val readHeader = reader.readLine() // Skip the header line
+            var line: String? = reader.readLine()
+            while (line != null) {
+                val tokens = line.split(",")
+                abcString = abcString.toString() + tokens[monthNumber-1].toString()
+
+                line = reader.readLine()
+            }
+        }
+
+        catch (e: Exception){
+            e.printStackTrace()
+        }
+        return abcString.toString()
+    }
+
 }

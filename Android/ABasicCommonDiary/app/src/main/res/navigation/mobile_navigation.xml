@@ -3,7 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_checklist">
+    app:startDestination="@+id/nav_gallery">
+
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="com.app.abasiccommondiary.ui.gallery.GalleryFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/nav_checklist"

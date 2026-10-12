@@ -190,7 +190,7 @@
             <TableRow>
                 <TextView
                     android:layout_width="350dp"
-                    android:layout_height="370dp"
+                    android:layout_height="300dp"
                     android:id="@+id/tvSummary"
                     android:textSize="30dp"
                     android:text="Summary"

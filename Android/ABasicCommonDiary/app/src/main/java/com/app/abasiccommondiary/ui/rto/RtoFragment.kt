@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.app.abasiccommondiary.databinding.FragmentRtoBinding
 import java.util.*
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
@@ -22,10 +23,13 @@ import android.speech.SpeechRecognizer
 import android.speech.tts.TextToSpeech
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.MotionEvent
 import com.android.volley.*
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import java.io.BufferedReader
+import java.io.InputStreamReader
 import java.lang.Double.parseDouble
 import java.lang.NumberFormatException
 
@@ -74,7 +78,7 @@ class RtoFragment : Fragment(), View.OnClickListener {
         btSpokenRtoCode!!.setOnClickListener(this)
         btReadRtoCode = binding.btReadRtoCode
         btReadRtoCode!!.setOnClickListener(this)
-        btStopReadRtoCode = binding.btReadRtoCode
+        btStopReadRtoCode = binding.btStopReadRtoCode
         btStopReadRtoCode!!.setOnClickListener(this)
         rtoViewModel.text.observe(viewLifecycleOwner, Observer { tvTitle!!.text = it })
 
@@ -87,7 +91,7 @@ class RtoFragment : Fragment(), View.OnClickListener {
 
         etStateCode!!.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
-                if(etStateCode!!.text.length==2){
+                if(etStateCode!!.text.length==4){
                     etRtoCode!!.requestFocus()
                 }
             }
@@ -108,6 +112,30 @@ class RtoFragment : Fragment(), View.OnClickListener {
         return root
     }
 
+    override fun onClick(v: View) {
+        if (v === btDetail) {
+            //updateTaskToSheet()
+            loadData()
+        }
+        if (v === btRtoList) {
+            showRtoList()
+        }
+        if (v === btSpokenRtoCode) {
+            showSpokenRto()
+        }
+        if (v === btReadRtoCode) {
+            readRto()
+        }
+        if (v === btStopReadRtoCode) {
+            stopReadRto()
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun loadData(){
         //loading = ProgressDialog.show(this, "Loading", "please wait", false, true)
         tvSummary!!.text = "555.  Got the Rto Details Yey..."
@@ -115,125 +143,47 @@ class RtoFragment : Fragment(), View.OnClickListener {
 
         var strRtoCode = etRtoCode!!.text.toString()
         var strStateCode = etStateCode!!.text.toString()
-        tvSummary!!.text = "https://script.google.com/macros/s/AKfycbyzLKkNoicthE1x2ACgnJVOyUunDGQDYJpA7i5nkDAGqogV3Z15/exec?action=getRTODetails&stateCode=" + strStateCode + "&rtoCode=" + strRtoCode
+        tvSummary!!.text = "1https://script.google.com/macros/s/AKfycbyzLKkNoicthE1x2ACgnJVOyUunDGQDYJpA7i5nkDAGqogV3Z15/exec?action=getRTODetails&stateCode=" + strStateCode + "&rtoCode=" + strRtoCode
 
-        val stringRequest = StringRequest(
-            Request.Method.GET,
-            tvSummary!!.text.toString(),
-            Response.Listener { response -> parseItems(response) },
-            Response.ErrorListener {
-                tvSummary!!.text = "777.  Into Error...."
+        var listListStateRTO = readAssetsCSV(context, "state_rto.csv")
+        var strStateRTO = "ABC"
+
+        for (rtoDetail in listListStateRTO) {
+            if(rtoDetail.get(0).equals(strStateCode,ignoreCase = true)){
+
+                strStateRTO = rtoDetail.get(1) +"; " + rtoDetail.get(2)
+                break
             }
-        )
+        }
+        tvSummary!!.text = strStateRTO
 
-        val socketTimeOut = 50000
-        val policy: RetryPolicy =
-            DefaultRetryPolicy(socketTimeOut, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)
-        stringRequest.retryPolicy = policy
-        //val queue = Volley.newRequestQueue(this)
-        val queue: RequestQueue = Volley.newRequestQueue(requireActivity().applicationContext)
-        queue.add(stringRequest)
+        parseItems(strStateRTO)
     }
 
     private fun showRtoList(){
         //loading = ProgressDialog.show(this, "Loading", "please wait", false, true)
         tvSummary!!.text = "555.  Got the Rto Details Yey..."
 
-        var strRtoText = etSearchRtoCode?.text.toString()
-        val stringRequest = StringRequest(
-            Request.Method.GET,
-            "https://script.google.com/macros/s/AKfycbyzLKkNoicthE1x2ACgnJVOyUunDGQDYJpA7i5nkDAGqogV3Z15/exec?action=getRTOList&rtoText=" + strRtoText,
-            Response.Listener { response -> parseItems(response) },
-            Response.ErrorListener {
-                tvSummary!!.text = "555.  Into Error...."
-            }
-        )
+        var strAllRTO = ""
 
-        val socketTimeOut = 50000
-        val policy: RetryPolicy =
-            DefaultRetryPolicy(socketTimeOut, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)
-        stringRequest.retryPolicy = policy
-        //val queue = Volley.newRequestQueue(this)
-        val queue: RequestQueue = Volley.newRequestQueue(requireActivity().applicationContext)
-        queue.add(stringRequest)
+        var listListStateRTO = readAssetsCSV(context, "state_rto.csv")
+
+        for(rtoDetail in listListStateRTO){
+            Log.d("EEEE", rtoDetail.get(1) + "---" + etSearchRtoCode?.text.toString())
+            if(rtoDetail.get(1).contains( etSearchRtoCode?.text.toString(),ignoreCase = true)){
+                strAllRTO = strAllRTO + rtoDetail.get(1) +". "
+            }
+        }
+
+        tvSummary!!.text = strAllRTO
+        parseItems(strAllRTO)
     }
 
     private fun showSpokenRto(){
         //loading = ProgressDialog.show(this, "Loading", "please wait", false, true)
-        tvSummary!!.text = "555.  Got the Rto Details Yey..."
-
-        var strSpeakText = tvSpeak?.text.toString()
-        var strRtoCode = ""
-        var strStateCode = ""
-        if(strSpeakText.length == 5) {
-            tvSummary!!.text = "999...  The text is ... " + strSpeakText.substring(3..4)
-            var numeric = true
-            try {
-                val num1 = parseDouble( strSpeakText.substring(3..4))
-            }
-            catch (e: NumberFormatException){
-                numeric = false
-            }
-            if(numeric){
-                if (strSpeakText.substring(3..4).toInt() < 100) {
-                    strRtoCode = tvSpeak?.text.toString().substring(3..4)
-                    strStateCode = tvSpeak?.text.toString().substring(0..1)
-                }
-            }
-        }
-        else if(strSpeakText.length == 4) {
-            tvSummary!!.text = "999...  The text is ... " + strSpeakText.substring(2..3)
-            var numeric = true
-            try {
-                val num1 = parseDouble( strSpeakText.substring(2..3))
-            }
-            catch (e: NumberFormatException){
-                numeric = false
-            }
-            if(numeric){
-                if (strSpeakText.substring(2..3).toInt() < 100) {
-                    strRtoCode = tvSpeak?.text.toString().substring(2..3)
-                    strStateCode = tvSpeak?.text.toString().substring(0..1)
-                }
-            }
-        }
-/*
-        else if(strSpeakText.length == 3) {
-            var numeric = true
-            try {
-                val num1 = parseDouble( strSpeakText.substring(2..2))
-            }
-            catch (e: NumberFormatException){
-                numeric = false
-            }
-            if(numeric){
-                if (strSpeakText.substring(2..2).toInt() < 100) {
-                    strRtoCode = tvSpeak?.text.toString().substring(2..2)
-                    strStateCode = tvSpeak?.text.toString().substring(0..1)
-                }
-            }
-        }
-*/
-        else{
-            tvSummary!!.text = "888...  Into Error... " + strSpeakText.length.toString()
-            return
-        }
-        val stringRequest = StringRequest(
-            Request.Method.GET,
-            "https://script.google.com/macros/s/AKfycbyzLKkNoicthE1x2ACgnJVOyUunDGQDYJpA7i5nkDAGqogV3Z15/exec?action=getRTODetails&stateCode=" + strStateCode + "&rtoCode=" + strRtoCode,
-            Response.Listener { response -> parseItems(response) },
-            Response.ErrorListener {
-                tvSummary!!.text = "777.  Into Error...."
-            }
-        )
-
-        val socketTimeOut = 50000
-        val policy: RetryPolicy =
-            DefaultRetryPolicy(socketTimeOut, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)
-        stringRequest.retryPolicy = policy
-        //val queue = Volley.newRequestQueue(this)
-        val queue: RequestQueue = Volley.newRequestQueue(requireActivity().applicationContext)
-        queue.add(stringRequest)
+        //tvSummary!!.text = "555.  Got the Rto Details Yey..."
+        var strSpeakText = tvSummary!!.text.toString()
+        parseItems(strSpeakText)
     }
 
     private fun parseItems(jsonResponse: String) {
@@ -260,6 +210,7 @@ class RtoFragment : Fragment(), View.OnClickListener {
 
         tvSummary?.setMovementMethod(ScrollingMovementMethod())
         tvSummary!!.text = "" + rtoList
+        //tvSummary!!.text = "" + "Guntumukku Sarala Hemant Kumar"
         readRto()
 
         //loading!!.dismiss()
@@ -312,8 +263,6 @@ class RtoFragment : Fragment(), View.OnClickListener {
             }
             false
         })
-
-
     }
     private fun getErrorText(errorCode: Int): String {
         val errorMessage:String
@@ -342,29 +291,30 @@ class RtoFragment : Fragment(), View.OnClickListener {
             mTTS.stop()
     }
 
+    fun readAssetsCSV(context: Context?, fileName: String): List<List<String>> {
+        //Read from Assets folder copy
+        val csvData2D = mutableListOf<List<String>>()
 
-
-    override fun onClick(v: View) {
-        if (v === btDetail) {
-            //updateTaskToSheet()
-            loadData()
+        try {
+            // Open the file from the assets folder using the provided context
+            context?.assets?.open(fileName).use { inputStream ->
+                BufferedReader(InputStreamReader(inputStream)).use { reader ->
+                    var headerline: String? = reader.readLine()
+                    var line: String? = reader.readLine()
+                    while (line != null) {
+                        // Split the line by comma and add as an inner list
+                        // Use .split(",") for exact comma matching
+                        val row = line.split(",").map { it.trim() }
+                        csvData2D.add(row)
+                        line = reader.readLine()
+                    }
+                }
+            }
         }
-        if (v === btRtoList) {
-            showRtoList()
+        catch (e: Exception) {
+            e.printStackTrace()
         }
-        if (v === btSpokenRtoCode) {
-            showSpokenRto()
-        }
-        if (v === btReadRtoCode) {
-            readRto()
-        }
-        if (v === btStopReadRtoCode) {
-            stopReadRto()
-        }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        Log.d("CCCC", csvData2D.get(0).get(0)+ "..." + csvData2D.get(0).get(2)+"..." + csvData2D.get(10).get(0) + "..." + csvData2D.get(10).get(2))
+        return csvData2D
     }
 }
