@@ -137,4 +137,34 @@
         android:textSize="36sp"
         app:layout_constraintTop_toBottomOf="@+id/btnResume"
         />
+    <Chronometer
+        android:id="@+id/c_meter_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:textStyle="bold"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="256dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="28dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#ffffff"
+        android:textSize="80sp"
+        app:layout_constraintTop_toBottomOf="@+id/c_meter"
+        />
+
+    <TextView
+        android:id="@+id/txtCurrentTime"
+        android:layout_width="382dp"
+        android:layout_height="200dp"
+        android:fontFamily="sans-serif"
+        android:text="0"
+        android:textColor="#ffffff"
+        android:textSize="80dp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/tvTimerText"
+        app:layout_constraintStart_toStartOf="@+id/c_meter_time"
+        app:layout_constraintTop_toBottomOf="@+id/c_meter_time"
+        tools:ignore="MissingConstraints" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
