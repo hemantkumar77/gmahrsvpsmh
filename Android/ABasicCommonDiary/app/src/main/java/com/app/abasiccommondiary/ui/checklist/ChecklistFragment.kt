@@ -16,6 +16,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.android.volley.*
 import com.app.abasiccommondiary.databinding.FragmentChecklistBinding
+import com.app.abasiccommondiary.R
 import java.time.LocalDateTime
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -72,7 +73,7 @@ class ChecklistFragment : Fragment(), View.OnClickListener {
             binding.B10,binding.B11,binding.B12,binding.B13,binding.B14,binding.B15,binding.B16,binding.B17,binding.B18,binding.B19,
             binding.B20,binding.B21,binding.B22,binding.B23,binding.B24,binding.B25,binding.B26,binding.B27,binding.B28,binding.B29,
             binding.B30,binding.B31,binding.B32,binding.B33,binding.B34)
-        val nightModeFlags = context!!.resources.configuration.uiMode and
+        val nightModeFlags = requireContext().resources.configuration.uiMode and
                 Configuration.UI_MODE_NIGHT_MASK
         when (nightModeFlags) {
             Configuration.UI_MODE_NIGHT_YES -> darkMode="Yes"
@@ -100,9 +101,9 @@ class ChecklistFragment : Fragment(), View.OnClickListener {
         val timeWFH = arrayOf<String>("2300","630", "640", "700", "704", "706", "716", "720", "840", "842", "852", "854", "900", "904", "1300", "1700", "1702", "1704", "1830", "1856", "1858", "2030", "2032", "2130", "2145", "2200", "2230", "2245", "2245", "2246", "2249", "2250", "2252", "2255", "2300")
         val timeSAT = arrayOf<String>("2300","630", "640", "700", "704", "706", "716", "720", "840", "842", "852", "854", "900", "904", "1300", "1700", "1702", "1704", "1830", "1856", "1858", "2030", "2032", "2130", "2145", "2200", "2230", "2245", "2245", "2246", "2249", "2250", "2252", "2255", "2300")
         val timeSUN = arrayOf<String>("2300","630", "640", "700", "704", "706", "716", "720", "840", "842", "852", "854", "900", "904", "1300", "1700", "1702", "1704", "1830", "1856", "1858", "2030", "2032", "2130", "2145", "2200", "2230", "2245", "2245", "2246", "2249", "2250", "2252", "2255", "2300")
+        val taskIcon: List<String> = resources.getStringArray(R.array.font_icon).toList()
 
-        val taskIcon = arrayOf<String>("\uf236", "\ue061", "\uf683", "\uf5a5", "\uf2a2", "\uf4fc", "\uf063", "\uf70c", "\ue4c5", "\uf2cc", "\uf1fb", "\uf0fa", "\uf02d", "\uf275", "\ue05c", "\ue4c5", "\uf1fb", "\uf085", "\uf1BB", "\uE55A", "\ue4c5", "\ue05c", "\uf500", "\uf5da", "\uf518", "\uf447", "\uf647", "\uf17b", "\uf7a0", "\uf54b", "\uf588", "\uf1fb", "\uf10b", "\uf04a", "\uf62e")
-        for(i in 0..34){
+            for(i in 0..34){
             textViewChecklist[i]!!.setOnClickListener(this)
             if(strWeekName1.equals("SATURDAY"))
                 textViewChecklistTime[i]!!.setText(timeSAT[i].toString())
@@ -112,7 +113,7 @@ class ChecklistFragment : Fragment(), View.OnClickListener {
                 textViewChecklistTime[i]!!.setText(timeWFH[i].toString())
             else{
                 textViewChecklistTime[i]!!.setText(timeWFO[i].toString())
-                textViewChecklist[i]!!.setText(taskIcon[i])
+                textViewChecklist[i]!!.setText(taskIcon.get(i))
             }
         }
 
@@ -176,11 +177,11 @@ class ChecklistFragment : Fragment(), View.OnClickListener {
                 //var queue: RequestQueue? = Volley.newRequestQueue(requireActivity().applicationContext)
             ) {
                 override fun getParams(): Map<String, String> {
-                    textViewSummary!!.text = "222. " + dateNumber + "-"+ monthNumber
+                    textViewSummary!!.text = "Current Date: " + dateNumber + "-"+ monthNumber
                     val parmas: MutableMap<String, String> =
                         HashMap()
 
-                    //here we pass params
+                    //Parameter
                     parmas["action"] = "addItem"
                     parmas["dateNumber"] = dateNumber
                     parmas["monthNumber"] = monthNumber
@@ -201,7 +202,7 @@ class ChecklistFragment : Fragment(), View.OnClickListener {
         if (queue != null) {
             queue.add(stringRequest)
         }
-        textViewSummary!!.text = "444. " + dateNumber + "-"+ monthNumber
+        textViewSummary!!.text = "Data Updated for: " + dateNumber + "-"+ monthNumber
     }
 
     private fun loadPreviousTasks(){
@@ -254,7 +255,7 @@ class ChecklistFragment : Fragment(), View.OnClickListener {
             "https://script.google.com/macros/s/AKfycbyzLKkNoicthE1x2ACgnJVOyUunDGQDYJpA7i5nkDAGqogV3Z15/exec?action=getItems&dateNumber=" + dateNumber + "&monthNumber=" + monthNumber,
             Response.Listener { response -> parseItems(response, dateNumber) },
             Response.ErrorListener {
-                textViewSummary!!.text = "555.  Into Error...."
+                textViewSummary!!.text = "Oops!!  Into Error..."
             }
         )
 
@@ -274,7 +275,7 @@ class ChecklistFragment : Fragment(), View.OnClickListener {
         val strTask01 = parts01[0]
         val strDailyCount = parts01[1]
         val strMonthlyCount = parts01[2]
-        textViewSummary!!.text = "666.  $strTask01, $strDailyCount, $strMonthlyCount"
+        textViewSummary!!.text = "Task Count:  $strTask01, $strDailyCount, $strMonthlyCount"
         //textHome!!.text = "665.  $strTask01, $strDailyCount, $strMonthlyCount"
 
         for(i in 0..34){

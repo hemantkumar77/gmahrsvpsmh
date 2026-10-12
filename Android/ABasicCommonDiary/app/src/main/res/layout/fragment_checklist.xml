@@ -52,7 +52,7 @@
                     android:text="\uf236"/>
                 <TextView android:id="@+id/A01" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
                     android:layout_height="60dp" android:gravity="center" android:layout_span="4" android:fontFamily="@font/fa_solid"
-                    android:text="\ue061"/>
+                    android:text="\uf06e"/>
                 <TextView android:id="@+id/A02" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
                     android:layout_height="60dp" android:gravity="center" android:layout_span="4" android:fontFamily="@font/fa_solid"
                     android:text="\uf683"/>
@@ -87,13 +87,13 @@
                     android:text="\uf4fc"/>
                 <TextView android:id="@+id/A06" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
                     android:layout_height="60dp" android:gravity="center" android:layout_span="4" android:fontFamily="@font/fa_solid"
-                    android:text="\uf063"/>
+                    android:text="\ue538"/>
                 <TextView android:id="@+id/A07" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
                     android:layout_height="60dp" android:gravity="center" android:layout_span="4" android:fontFamily="@font/fa_solid"
                     android:text="\uf70c"/>
                 <TextView android:id="@+id/A08" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
                     android:layout_height="60dp" android:gravity="center" android:layout_span="4" android:fontFamily="@font/fa_solid"
-                    android:text="\ue4c5"/>
+                    android:text="\ue4f4"/>
                 <TextView android:id="@+id/A09" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
                     android:layout_height="60dp" android:gravity="center" android:layout_span="4" android:fontFamily="@font/fa_solid"
                     android:text="\uf2cc"/>
@@ -118,7 +118,7 @@
             <TableRow>
                 <TextView android:id="@+id/A10" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
                     android:layout_height="60dp" android:gravity="center" android:layout_span="4" android:fontFamily="@font/fa_solid"
-                    android:text="\uf1fb"/>
+                    android:text="\ue4bf"/>
                 <TextView android:id="@+id/A11" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
                     android:layout_height="60dp" android:gravity="center" android:layout_span="4" android:fontFamily="@font/fa_solid"
                     android:text="\uf0fa"/>
@@ -153,17 +153,16 @@
             <TableRow>
                 <TextView android:id="@+id/A15" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
                     android:layout_height="60dp" android:gravity="center" android:layout_span="4" android:fontFamily="@font/fa_solid"
-                    android:text="\ue4c5"/>
-
+                    android:text="\ue4f4"/>
                 <TextView android:id="@+id/A16" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
                     android:layout_height="60dp" android:gravity="center" android:layout_span="4" android:fontFamily="@font/fa_solid"
-                    android:text="\uf1fb"/>
-                <TextView android:id="@+id/A17" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
-                    android:layout_height="60dp" android:gravity="center" android:layout_span="4" android:fontFamily="@font/fa_solid"
-                    android:text="\uf630"/>
+                    android:text="\ue4bf"/>
+                <TextView android:id="@+id/A17" android:textSize="40dp" android:layout_width="wrap_content" android:layout_weight="0.8"
+                    android:layout_height="60dp" android:gravity="center"  android:layout_span="4" android:fontFamily="@font/fa_solid"
+                    android:text="\uf630" />
                 <TextView android:id="@+id/A18" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
                     android:layout_height="60dp" android:gravity="center" android:layout_span="4" android:fontFamily="@font/fa_solid"
-                    android:text="\uf1BB"/>
+                    android:text="\ue589"/>
                 <TextView android:id="@+id/A19" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
                     android:layout_height="60dp" android:gravity="center" android:layout_span="4" android:fontFamily="@font/fa_solid"
                     android:text="\uE55A"/>
@@ -188,13 +187,13 @@
             <TableRow>
                 <TextView android:id="@+id/A20" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
                     android:layout_height="60dp" android:gravity="center" android:layout_span="4" android:fontFamily="@font/fa_solid"
-                    android:text="\ue4c5"/>
+                    android:text="\ue4f4"/>
                 <TextView android:id="@+id/A21" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
                     android:layout_height="60dp" android:gravity="center" android:layout_span="4" android:fontFamily="@font/fa_solid"
                     android:text="\ue05c"/>
                 <TextView android:id="@+id/A22" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
                     android:layout_height="60dp" android:gravity="center" android:layout_span="4" android:fontFamily="@font/fa_solid"
-                    android:text="\uf500"/>
+                    android:text="\ue533"/>
                 <TextView android:id="@+id/A23" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
                     android:layout_height="60dp" android:gravity="center" android:layout_span="4" android:fontFamily="@font/fa_solid"
                     android:text="\uf5da"/>
@@ -232,7 +231,7 @@
                     android:text="\uf17b"/>
                 <TextView android:id="@+id/A28" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
                     android:layout_height="60dp" android:gravity="center" android:layout_span="4" android:fontFamily="@font/fa_solid"
-                    android:text="\uf7a0"/>
+                    android:text="\ue4f5"/>
                 <TextView android:id="@+id/A29" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
                     android:layout_height="60dp" android:gravity="center" android:layout_span="4" android:fontFamily="@font/fa_solid"
                     android:text="\uf54b"/>
@@ -257,10 +256,10 @@
             <TableRow>
                 <TextView android:id="@+id/A30" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
                     android:layout_height="60dp" android:gravity="center" android:layout_span="4" android:fontFamily="@font/fa_solid"
-                    android:text="\uf588"/>
+                    android:text="\uf043"/>
                 <TextView android:id="@+id/A31" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
                     android:layout_height="60dp" android:gravity="center" android:layout_span="4" android:fontFamily="@font/fa_solid"
-                    android:text="\uf1fb"/>
+                    android:text="\ue4bf"/>
                 <TextView android:id="@+id/A32" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
                     android:layout_height="60dp" android:gravity="center" android:layout_span="4" android:fontFamily="@font/fa_solid"
                     android:text="\uf10b"/>
@@ -269,7 +268,7 @@
                     android:text="\uf04a"/>
                 <TextView android:id="@+id/A34" android:textSize="40sp" android:layout_width="wrap_content" android:layout_weight="0.8"
                     android:layout_height="60dp" android:gravity="center" android:layout_span="4" android:fontFamily="@font/fa_solid"
-                    android:text="\uf62e"/>
+                    android:text="\uf5c9"/>
             </TableRow>
             <TableRow>
                 <TextView android:id="@+id/B30" android:textSize="15sp" android:layout_width="wrap_content" android:layout_weight="0.8"

@@ -14,6 +14,43 @@
     <string name="start">Start</string>
     <string name="menu_train">Train</string>
     <string name="menu_pot">Pot</string>
+    <string-array name="font_icon">
+        <item>\uf236;</item>
+        <item>\uf06e;</item>
+        <item>\uf683;</item>
+        <item>\uf5a5;</item>
+        <item>\uf2a2;</item>
+        <item>\uf4fc;</item>
+        <item>\ue538;</item>
+        <item>\uf70c;</item>
+        <item>\ue4f4;</item>
+        <item>\uf2cc;</item>
+        <item>\ue4bf;</item>
+        <item>\uf0fa;</item>
+        <item>\uf02d;</item>
+        <item>\uf275;</item>
+        <item>\ue05c;</item>
+        <item>\ue4f4;</item>
+        <item>\ue4bf;</item>
+        <item>\uf630;</item>
+        <item>\ue589;</item>
+        <item>\uE55A;</item>
+        <item>\ue4f4;</item>
+        <item>\ue05c;</item>
+        <item>\ue533;</item>
+        <item>\uf5da;</item>
+        <item>\uf518;</item>
+        <item>\uf447;</item>
+        <item>\uf647;</item>
+        <item>\uf17b;</item>
+        <item>\ue4f5;</item>
+        <item>\uf54b;</item>
+        <item>\uf043;</item>
+        <item>\ue4bf;</item>
+        <item>\uf10b;</item>
+        <item>\uf04a;</item>
+        <item>\uf5c9;</item>
+    </string-array>
     <string-array name="station_name">
         <item>PUNE</item>
         <item>SHIVAJINAGAR</item>

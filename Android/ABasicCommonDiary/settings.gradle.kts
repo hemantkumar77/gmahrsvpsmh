@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ABCD04"
+rootProject.name = "ABasicCommonDiary"
 include(":app")
  
